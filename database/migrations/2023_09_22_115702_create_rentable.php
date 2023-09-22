@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('rentable', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("rentable_type");
+            $table->integer("total_number");
+            $table->string("image");
+            $table->string("image_mime");
+            $table->integer("image_size");
+            $table->date("updated_at");
+            $table->date("creared_at");
         });
     }
 

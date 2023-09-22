@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->id();
             $table->integer("employee_code");
-            $table->string("first_name");
-            $table->string("employee_code");
+            $table->string("first_name",50);
+            $table->string("last_name",50);
+            $table->string("email",255);
+            $table->integer("phone_number");
+            $table->string("remember_token",255);
         });
     }
 

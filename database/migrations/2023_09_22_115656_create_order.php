@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->date("lended_at");
+            $table->date("must_return_at");
         });
     }
 
