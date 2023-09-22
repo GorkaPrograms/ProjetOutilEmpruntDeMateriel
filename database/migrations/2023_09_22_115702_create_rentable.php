@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("image_mime");
             $table->integer("image_size");
             $table->date("updated_at");
-            $table->date("creared_at");
+            $table->date("created_at");
         });
     }
 
