@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="h-full" lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,7 +9,7 @@
 
     <title>Dashboard</title>
 </head>
-<body>
-    <p>test admin</p>
+<body class="h-full">
+    <p class="h-full w-[100px] bg-blue-400 flex justify-center items-center">Test admin</p>
 </body>
 </html>

@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', [Rentable::class, 'view'])->name('Dasboard.view');
+Route::get('/admin/dashboard', [Rentable::class, 'view'])->name('Dashboard.view');
 
 
 
