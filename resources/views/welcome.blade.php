@@ -13,8 +13,13 @@
 
     </head>
     <body class="antialiased">
-    <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1>
+    <div class="w-full h-[100px] bg-blue-400 flex justify-center items-center">
+        <h1 class="text-3xl">Computer Materiel Lending</h1>
+    </div>
+    <div class="w-full h-screen bg-gray-300 flex items-center justify-center">
+        <form action="" method="POST">
+            <input type="text" name="codeEmploye" type="submit">
+        </form>
+    </div>
     </body>
 </html>
