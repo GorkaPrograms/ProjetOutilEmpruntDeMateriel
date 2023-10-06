@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Rentable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin/dashboard', [Rentable::class, 'view'])->name('Dasboard.view');
 
 
 
