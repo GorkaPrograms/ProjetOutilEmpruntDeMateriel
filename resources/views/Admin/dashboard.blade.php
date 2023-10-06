@@ -10,6 +10,9 @@
     <title>Dashboard</title>
 </head>
 <body class="h-full">
-    <p class="h-full w-[100px] bg-blue-400 flex justify-center items-center">Test admin</p>
+    <div class="h-full w-[180px] bg-blue-400 flex items-center flex-col">
+        <button id="manageUsersButton" class="w-full h-[50px] hover:bg-violet-600 hover:text-white hover:duration-300">Gérer les utilisateurs</button>
+        <button id="manageRentablesButton" class="w-full h-[50px] hover:bg-violet-600 hover:text-white hover:duration-300">Gérer le matériel</button>
+    </div>
 </body>
 </html>
