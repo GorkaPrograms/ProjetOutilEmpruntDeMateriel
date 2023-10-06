@@ -17,8 +17,15 @@
         <h1 class="text-3xl">Computer Materiel Lending</h1>
     </div>
     <div class="w-full h-screen bg-gray-300 flex items-center justify-center">
-        <form action="" method="POST">
-            <input type="text" name="codeEmploye" type="submit">
+        @if (session('nomatch'))
+            <div class="w-full bg-yellow-400 alert alert-success flex justify-center items-center">
+                {{ session('nomatch') }}
+            </div>
+        @endif
+        <form action="{{ route('Login.store') }}" method="POST" class="flex flex-col">
+            @csrf
+            <input type="number" name="employee_code" placeholder="Code employer">
+            <button type="submit">S'authentifier</button>
         </form>
     </div>
     </body>
