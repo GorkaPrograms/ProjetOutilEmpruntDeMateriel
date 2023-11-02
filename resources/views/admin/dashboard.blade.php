@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="h-full" lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
