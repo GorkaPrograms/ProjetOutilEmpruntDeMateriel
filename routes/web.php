@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Rentable;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\RentableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +26,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->name('Login.Login');
 });
 
-Route::get('/home', [DashboardController::class, 'home'])->name('home');
+Route::get('/home', [RentableController::class, 'index'])->name('home');
+Route::get('/order/cart', [OrderController::class, 'view'])->name('order.cart');
 
 Route::middleware('auth')->group(function(){
     Route::get('/user',function (){

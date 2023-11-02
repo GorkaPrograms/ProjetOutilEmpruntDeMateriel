@@ -13,6 +13,6 @@ class RentableSeeder extends Seeder
      */
     public function run(): void
     {
-        Rentable::factory(20)->create();
+        Rentable::factory(24)->create();
     }
 }

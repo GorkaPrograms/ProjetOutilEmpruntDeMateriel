@@ -1,7 +1,22 @@
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/*Sert à faire fonctionner le x-cloak d'AlpineJs qui permet de faire un display none sans charger l'élément*/
 
 [x-cloak]{
     display: none !important;
 }
+
+/*Supprime le 'x' de toutes les input de recherche du site*/
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
