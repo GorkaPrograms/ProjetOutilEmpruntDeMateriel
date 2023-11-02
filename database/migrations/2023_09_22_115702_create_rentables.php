@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rentable', function (Blueprint $table) {
+        Schema::create('rentables', function (Blueprint $table) {
             $table->id();
             $table->string("rentable_name");
             $table->string("rentable_type");
             $table->integer("total_number");
             $table->string("image");
-            $table->string("image_mime");
-            $table->integer("image_size");
             $table->date("updated_at");
             $table->date("created_at");
         });

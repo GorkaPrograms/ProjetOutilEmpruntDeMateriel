@@ -14,7 +14,7 @@
     </head>
     <body class="antialiased">
     <div class="w-full h-[100px] bg-blue-400 flex justify-center items-center">
-        <h1 class="text-3xl">Computer Materiel Lending</h1>
+        <h1 class="text-3xl">Computer Material Lending</h1>
     </div>
     <div class="w-full h-screen bg-gray-300 flex items-center justify-center">
         @if (session('nomatch'))
@@ -24,7 +24,7 @@
         @endif
         <form action="{{ route('Login.Login') }}" method="POST" class="flex flex-col">
             @csrf
-            <input type="number" name="employee_code" placeholder="Code employer">
+            <input type="number" name="employee_code" placeholder="Code employé">
             <button type="submit">S'authentifier</button>
         </form>
     </div>

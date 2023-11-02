@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Rentable;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/login', [LoginController::class, 'login'])->name('Login.Login');
 });
+
+Route::get('/home', [DashboardController::class, 'home'])->name('home');
 
 Route::middleware('auth')->group(function(){
     Route::get('/user',function (){

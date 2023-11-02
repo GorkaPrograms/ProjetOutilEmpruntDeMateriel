@@ -9,7 +9,4 @@ class Rentable extends Model
 {
     use HasFactory;
 
-    protected $attributes = [
-        'rentable_type',
-    ];
 }
