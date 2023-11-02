@@ -18,11 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
 
-    Route::get('/', [LoginController::class, 'create'])->name('Login.create');
+    Route::get('/', [LoginController::class, 'view'])->name('Login.View');
 
-    Route::post('/login/store', [LoginController::class, 'login'])->name('Login.store');
+    Route::post('/login', [LoginController::class, 'login'])->name('Login.Login');
 });
-Route::get('/admin/dashboard', [Rentable::class, 'view'])->name('Dashboard.view');
 
 Route::middleware('auth')->group(function(){
     Route::get('/user',function (){
@@ -36,5 +35,8 @@ Route::middleware('auth')->group(function(){
     })->name('product');
 
 });
+
+require __DIR__.'/auth.php';
+
 
 

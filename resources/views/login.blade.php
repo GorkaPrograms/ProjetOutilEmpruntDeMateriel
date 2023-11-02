@@ -22,7 +22,7 @@
                 {{ session('nomatch') }}
             </div>
         @endif
-        <form action="{{ route('Login.store') }}" method="POST" class="flex flex-col">
+        <form action="{{ route('Login.Login') }}" method="POST" class="flex flex-col">
             @csrf
             <input type="number" name="employee_code" placeholder="Code employer">
             <button type="submit">S'authentifier</button>

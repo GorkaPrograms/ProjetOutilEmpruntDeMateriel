@@ -7,11 +7,10 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function create(): View
+    public function view()
     {
         return view('/login');
     }
