@@ -21,7 +21,7 @@ class RentableController extends Controller
         }
 
         return view('home',[
-            'rentables' => $rentables->latest()->paginate(12)
+            'rentables' => $rentables->latest()->paginate(9)
         ]);
     }
 

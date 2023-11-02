@@ -11,7 +11,7 @@
     </head>
     <body class="antialiased w-full h-full">
     <div class="w-full h-full flex flex-col items-center justify-center">
-        <h1 class="text-8xl underline underline-offset-8 mb-16">Computer Material Lending</h1>
+        <h1 class="text-6xl underline underline-offset-8 mb-16">Computer Material Lending</h1>
         @if (session('nomatch'))
             <div class="w-full bg-yellow-400 alert alert-success flex justify-center items-center">
                 {{ session('nomatch') }}
