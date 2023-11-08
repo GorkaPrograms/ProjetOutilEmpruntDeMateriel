@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         if($user!=null){
             Auth::login($user);
-            return redirect()->route('product');
+            return redirect()->route('home');
         }else{
             return back()->withErrors(['nomatch' => 'Aucun utilisateur correspondant']);
         }

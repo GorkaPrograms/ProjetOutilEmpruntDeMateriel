@@ -36,10 +36,6 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('Login.logout');
 
-    Route::get('/product', function () {
-        return view('product');
-    })->name('product');
-
 });
 
 require __DIR__.'/auth.php';
