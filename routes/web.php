@@ -26,10 +26,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->name('Login.Login');
 });
 
-Route::get('/home', [RentableController::class, 'index'])->name('home');
-Route::get('/order/cart', [OrderController::class, 'view'])->name('order.cart');
-
 Route::middleware('auth')->group(function(){
+    Route::get('/home', [RentableController::class, 'index'])->name('home');
+    Route::post('/add-product-cart', [CartController::class, 'addProductToCart'])->name('cart.add-product');
+    Route::get('/order/cart', [OrderController::class, 'view'])->name('order.cart');
+
     Route::get('/user',function (){
         dump(\Illuminate\Support\Facades\Auth::user());
     });

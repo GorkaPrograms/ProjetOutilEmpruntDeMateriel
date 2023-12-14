@@ -58,7 +58,7 @@
                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                     tabindex="-1"
                 >
-                    <li><a href="{{ route('Admin.Login.View') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a></li>
+                    <li><a href="{{ route('Dashboard.view') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a></li>
                     <li>
                         <form action="{{route('Login.logout')}}" class="flex items-center px-4 py-2 font-semibold text-sm text-indigo-700 hover:bg-gray-100" method="POST">
                             @csrf
