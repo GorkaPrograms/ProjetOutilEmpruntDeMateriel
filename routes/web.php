@@ -5,6 +5,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Rentable;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RentableController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
