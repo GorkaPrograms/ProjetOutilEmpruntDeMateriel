@@ -12,7 +12,7 @@
 <section id="sidebar" class="border-r border-gray-600 fixed bottom-0 left-0 w-[280px] h-calc-100-minus-50 bg-white
      z-1000 overflow-x-hidden custom-scrollbar p-4">
     <div class="flex flex-col gap-2">
-        <div class="w-full">
+        <div class="w-full ">
             <a href="#" class="w-full px-4 py-2 flex items-center hover:bg-gray-200 gap-2 {{ Request::is('dashboard') ? 'active' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
