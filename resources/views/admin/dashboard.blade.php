@@ -24,9 +24,8 @@
         <div class="w-full h-full  flex justify-between items-center ">
 
         </div>
-    </section>
-</div>
 
 
+    </div>
 </body>
 </html>

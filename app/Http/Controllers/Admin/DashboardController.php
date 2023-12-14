@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -12,8 +14,6 @@ class DashboardController extends Controller
         if (Auth::user()->is_admin) {
             return view('admin.dashboard');
         }
-
-        return redirect()->route('home');
     }
 
     public function home(){
