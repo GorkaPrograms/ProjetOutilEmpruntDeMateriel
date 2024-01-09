@@ -1,4 +1,5 @@
 <x-layout>
+    test
     <div class="grid grid-cols-3 gap-5">
         <p>Panier: {{ !\Illuminate\Support\Facades\Session::get('rentables') ?: count(\Illuminate\Support\Facades\Session::get('rentables')) }}</p>
         @forelse($rentables as $rentable)
