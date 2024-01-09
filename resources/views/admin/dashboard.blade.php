@@ -51,7 +51,6 @@
                                     </svg>
                                 </button>
                                 {{--Formulaire de suppression--}}
-                                <x-modal-delete-form action="" name="l'utilisateur"></x-modal-delete-form>
                                 {{--action="{{ route('delete.user', ['user' => $user]) }}" name="l'utilisateur"--}}
                             </td>
                         </div>
