@@ -33,7 +33,7 @@ test
                 </tr>
                 </thead>
                 <tbody class="border-b-2 border-b-gray-950 border-opacity-20">
-                @forelse($users as $user)
+                {{--@forelse($users as $user)
                     <tr class="odd:bg-gray-200 even:bg-gray-300">
                         <td> {{ $user->first_name }} </td>
                         <td> {{ $user->last_name }} </td>
@@ -52,12 +52,13 @@ test
                                 </button>
                                 {{--Formulaire de suppression--}}
                                 {{--action="{{ route('delete.user', ['user' => $user]) }}" name="l'utilisateur"--}}
-                            </td>
+                            {{--</td>
                         </div>
                     </tr>
                 @empty
                     <p>Aucun utilisateur trouvé</p>
                 @endforelse
+                --}}
                 </tbody>
             </table>
 
