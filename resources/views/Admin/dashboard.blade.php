@@ -10,7 +10,6 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-test
 <div class="w-full h-full" x-data="{deleting:false}">
     <!-- navbar-->
     @include('Admin.AdminLayouts.navbar')
