@@ -26,6 +26,7 @@
             <input type="text" name="employee_code" placeholder="Code employé" class="text-2xl rounded-md mb-5 bg-stone-100 py-2 px-4 border-2 border-stone-400">
             <button type="submit" class="text-2xl flex flex-row justify-center shadow-inner bg-stone-200 p-1 rounded-md hover:bg-[#494958] hover:scale-110 hover:cursor-pointer hover:text-white ease-in-out duration-200">S'authentifier</button>
         </form>
+        <!--test update-->
     </div>
     </body>
 </html>
