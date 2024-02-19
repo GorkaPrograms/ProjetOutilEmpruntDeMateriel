@@ -13,7 +13,9 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function(){
-    Route::get('/admin/dashboard', [DashboardController::class, 'view'])->name('Dashboard.view');
+    Route::get('/admin/dashboard/users', [DashboardController::class, 'view'])->name('Dashboard.view');
+    Route::get('/admin/dashboard/rentables', [DashboardController::class, 'rentables'])->name('dashboard.rentables');
+    Route::get('/admin/dashboard/orders', [DashboardController::class, 'orders'])->name('dashboard.orders');
     Route::post('admin/logout', [LoginController::class, 'logout'])->name('Admin.Logout');
 });
 

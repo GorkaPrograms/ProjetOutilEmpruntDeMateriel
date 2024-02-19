@@ -1,68 +1,50 @@
-<!doctype html>
-<html class="h-full" lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard - CML</title>
-    <link rel="icon" type="image" href="{{ URL('images/logo4.png') }}">
-    @vite('resources/css/app.css')
-</head>
-<body>
-<div class="w-full h-full" x-data="{deleting:false}">
-    <!-- navbar-->
-    @include('Admin.AdminLayouts.navbar')
-    <!-- sidebar-->
-    @include('Admin.AdminLayouts.sidebar')
+<x-admin-layout title="Dashboard - Utilisateurs" name="Dashboard | Gestion des utilisateurs">
+<div x-data="{deleting : false}" class="mt-12">
+    <table>
+        <thead>
+            <tr>
+                <td> Nom </td>
+                <td> Prénom </td>
+                <td> Code d'employé </td>
+                <td> Rôle </td>
+                <td> Gérer </td>
+                <td> Supprimer </td>
+            </tr>
+        </thead>
+        <tbody>
+        @forelse($users as $user)
+            <tr>
+                <td> {{ $user->last_name }} </td>
+                <td> {{ $user->first_name }} </td>
+                <td> {{ $user->employee_code }} </td>
+                @if( $user->is_admin == 1)
+                    <td> Administrateur </td>
+                @else
+                    <td> Utilisateur </td>
+                @endif
+                <td>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                            <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </td>
+                <td>
+                    <button type="button" x-on:click="deleting = !deleting">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+        @empty
+            <p> Aucun utilisateur trouvé </p>
+        @endforelse
+        </tbody>
+    </table>
 
-    <section id="content" class="flex flex-col z-10 ml-[280px] h-screen px-6 pb-6 pt-[82px] bg-gray-300">
-        <div class="w-fit flex flex-col justify-between bg-gray-50 px-12 py-10 rounded-md shadow-md">
-
-            <h2>Liste des utilisateurs</h2>
-            <table class="text-left p-1 border-collapse shadow-md">
-                <thead class="bg-gray-900 text-gray-50">
-                <tr class="rounded-t-md">
-                    <th class="rounded-tl-md">Nom</th>
-                    <th>Prénom</th>
-                    <th>Code employé</th>
-                    <th>Rôle</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                </tr>
-                </thead>
-                <tbody class="border-b-2 border-b-gray-950 border-opacity-20">
-                {{--@forelse($users as $user)
-                    <tr class="odd:bg-gray-200 even:bg-gray-300">
-                        <td> {{ $user->first_name }} </td>
-                        <td> {{ $user->last_name }} </td>
-                        <td> {{ $user->employee_code }} </td>
-                        @if($user->is_admin == 1)
-                            <td> Administrateur </td>
-                        @else
-                            <td> Utilisateur </td>
-                        @endif
-                        <td>modifier</td>
-                        <div>
-                            <td><button x-on:click="deleting = !deleting" class="w-full flex justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-red-600">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </button>
-                                {{--Formulaire de suppression--}}
-                                {{--action="{{ route('delete.user', ['user' => $user]) }}" name="l'utilisateur"--}}
-                            {{--</td>
-                        </div>
-                    </tr>
-                @empty
-                    <p>Aucun utilisateur trouvé</p>
-                @endforelse
-                --}}
-                </tbody>
-            </table>
+    <x-modal-delete-form action="#" name="l'utilisateur"></x-modal-delete-form>
 
 
-        </div>
 </div>
-</body>
-</html>
+</x-admin-layout>
