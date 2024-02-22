@@ -13,9 +13,16 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function(){
+    //Users
     Route::get('/admin/dashboard/users', [DashboardController::class, 'view'])->name('Dashboard.view');
+    Route::post('/admin/dashboard/users/add', [DashboardController::class, 'addUser'])->name('user.add');
+    Route::delete('admin/dashboard/users/delete/{user}', [DashboardController::class, 'deleteUser'])->name('user.delete');
+    Route::patch('admin/dashboard/users/update/{user}', [DashboardController::class, 'updateUser'])->name('user.update');
+    //Rentables
     Route::get('/admin/dashboard/rentables', [DashboardController::class, 'rentables'])->name('dashboard.rentables');
+    //Orders
     Route::get('/admin/dashboard/orders', [DashboardController::class, 'orders'])->name('dashboard.orders');
+
     Route::post('admin/logout', [LoginController::class, 'logout'])->name('Admin.Logout');
 });
 

@@ -6,14 +6,19 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class modalUpdateForm extends Component
+class modalUpdateForm extends Layout
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $name='',
+        public string $action='',
+        public string $formTitle='',
+        public string $placeholder='',
+    )
     {
-        //
+        parent::__construct($name);
     }
 
     /**
