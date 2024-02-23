@@ -40,7 +40,7 @@ class DashboardController extends Controller
 
         unset($validated['isAdmin']);
 
-        //Hash::make($validated['password'])
+        //Hash::make($validated['password'])d
 
         User::create($validated);
 
