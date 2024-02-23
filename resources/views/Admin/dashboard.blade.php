@@ -38,14 +38,14 @@
                     <td> Utilisateur </td>
                 @endif
                 <td>
-                    <button type="button" x-on:click="updating = !updating" class="w-full flex justify-center">
+                    <button id="updateButton" value="{{$user->id }}" type="button" x-on:click="updating = !updating" class="w-full flex justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                             <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clip-rule="evenodd" />
                         </svg>
                     </button>
                 </td>
                 <td>
-                    <button type="button" x-on:click="deleting = !deleting" class="w-full flex justify-center">
+                    <button id="deleteButton" value="{{$user->id }}" type="button" x-on:click="deleting = !deleting" class="w-full flex justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -65,12 +65,12 @@
         <div class="fixed bg-gray-900 opacity-20 top-0 left-0 w-full h-full" x-on:click="updating= !updating"></div>
 
         <div class="bg-white absolute top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
-            <button x-on:click="add = !add">
+            <button x-on:click="updating = !updating">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fixed top-2 right-2 text-red-600">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <form action="{{ route('user.update', ['user' => $user]) }}" method="POST" class="flex flex-col items-start h-full w-full text-lg pl-8 gap-3">
+            <form id="updateForm" action="{{ route('user.update', ['user' => $user]) }}" method="POST" class="flex flex-col items-start h-full w-full text-lg pl-8 gap-3">
                 @csrf
                 @method('PATCH')
                 <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Modifier l'utilisateur</h3>
@@ -104,9 +104,8 @@
                 <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Ajouter un utilisateur</h3>
                 <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="last_name" id="last_name" placeholder="Nom">
                 <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="first_name" id=first_name placeholder="Prénom">
-                <input hidden name="employee_code" id="employee_code" value="<?=  ?>">
                 <div class="flex flex-row justify-center items-center gap-2 text-lg">
-                    <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin">
+                    <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin" value="1">
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>
                 </div>
                 <div class="w-full flex justify-between px-24 mb-4">
@@ -118,4 +117,32 @@
     </div>
 
 </div>
+
+    <script>
+
+        const deleteButton = document.querySelectorAll('#deleteButton')
+        deleteButton.forEach(function (button){
+            button.addEventListener('click', function(){
+                let id = button.value,
+                    deleteForm = document.querySelector("#deleteForm");
+
+
+                deleteForm.action = `users/delete/${id}`
+            })
+        })
+
+
+        const updateButton = document.querySelectorAll('#updateButton')
+        updateButton.forEach(function (button){
+            button.addEventListener('click', function (){
+                let id = button.value,
+                    updateForm = document.querySelector('#updateForm');
+
+
+                updateForm.action = `users/update/${id}`
+            })
+        })
+    </script>
+
 </x-admin-layout>
+

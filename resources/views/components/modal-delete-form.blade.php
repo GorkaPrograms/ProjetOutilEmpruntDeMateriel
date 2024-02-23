@@ -7,7 +7,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
-        <form action="{{ $action }}" method="POST" class="flex flex-col h-full w-full">
+        <form id="deleteForm" action="{{ $action }}" method="POST" class="flex flex-col h-full w-full">
             @csrf
             @method('DELETE')
             <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Supprimer {{ $name }} :</h3>

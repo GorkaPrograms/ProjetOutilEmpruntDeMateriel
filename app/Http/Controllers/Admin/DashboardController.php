@@ -31,12 +31,29 @@ class DashboardController extends Controller
         $validated = $request->validate([
             'first_name' => ['required','string','between:2,30'],
             'last_name' => ['required','string','between:2,30'],
-            'employee_code' => ['required', 'integer', ]
+            'isAdmin' => ['nullable','boolean']
         ]);
+
+        $validated['employee_code'] = $this->ticket_number();
+
+        $validated['is_admin'] = $request->has('isAdmin');
+
+        unset($validated['isAdmin']);
+
+        //Hash::make($validated['password'])
 
         User::create($validated);
 
         return redirect()->back()->withStatus('Inscription réussie');
+    }
+
+    private function ticket_number()
+    {
+        do {
+            $code = random_int(10000000, 99999999);
+        } while (User::where("employee_code", "=", $code)->first());
+
+        return $code;
     }
 
     public function updateUser(Request $request, User $user){
