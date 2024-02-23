@@ -11,7 +11,8 @@
             @csrf
             @method('DELETE')
             <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Supprimer {{ $name }} :</h3>
-            <p class="text-lg py-4 px-8">Êtes vous sûr de vouloir supprimer {{ $name }} ?</p>
+            <p class="text-lg pt-4 pb-2 px-8">Êtes vous sûr de vouloir supprimer {{ $name }} <name id="firstName"></name> <lname id="lastName"></lname> ?</p>
+            <p class="text-md pb-4 px-8 opacity-70" id="isAdmin"></p>
             <div class="w-full flex justify-between px-24 mb-4">
                 <button type="submit" class="w-1/4 px-8 py-1 bg-red-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-red-500 transition duration-200">Oui</button>
                 <button type="button" class="w-1/4 px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="deleting = !deleting">Non</button>

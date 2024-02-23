@@ -29,13 +29,13 @@
         <tbody>
         @forelse($users as $user)
             <tr class="odd:bg-stone-100 even:bg-stone-200">
-                <td class="py-2 pl-2"> {{ $user->last_name }} </td>
-                <td> {{ $user->first_name }} </td>
+                <td class="py-2 pl-2 last-name"> {{ $user->last_name }} </td>
+                <td class="first-name"> {{ $user->first_name }} </td>
                 <td> {{ $user->employee_code }} </td>
                 @if( $user->is_admin == 1)
-                    <td> Administrateur </td>
+                    <td class="is-admin"> Administrateur </td>
                 @else
-                    <td> Utilisateur </td>
+                    <td class="is-admin"> Utilisateur </td>
                 @endif
                 <td>
                     <button id="updateButton" value="{{$user->id }}" type="button" x-on:click="updating = !updating" class="w-full flex justify-center">
@@ -77,12 +77,12 @@
                 <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="last_name" id="last_name" placeholder="Nom">
                 <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="first_name" id=first_name placeholder="Prénom">
                 <div class="flex flex-row justify-center items-center gap-2 text-lg">
-                    <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin">
+                    <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin" value="1">
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>
                 </div>
                 <div class="w-full flex justify-between px-24 mb-4">
                     <button type="submit" class="w-fit px-8 py-1 bg-blue-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-blue-500 transition duration-200">Valider</button>
-                    <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="add = !add">Annuler</button>
+                    <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="updating = !updating">Annuler</button>
                 </div>
             </form>
         </div>
@@ -124,9 +124,20 @@
         deleteButton.forEach(function (button){
             button.addEventListener('click', function(){
                 let id = button.value,
+                    userRow = button.closest('tr'),
                     deleteForm = document.querySelector("#deleteForm");
 
+                let lastName = userRow.querySelector(".last-name").innerText.trim();
+                let firstName = userRow.querySelector(".first-name").innerText.trim();
+                let isAdmin = userRow.querySelector(".is-admin").innerText.trim() === "Administrateur" ? 1 : 0;
 
+                let isAdminMessage = isAdmin === 1 ? 'Cet utilisateur dispose du grade administrateur' : 'Cet utilisateur ne dispose pas du grade administrateur';
+
+                console.log(isAdminMessage)
+
+                deleteForm.querySelector("#lastName").innerText = lastName;
+                deleteForm.querySelector("#firstName").innerText = firstName;
+                deleteForm.querySelector("#isAdmin").innerText = isAdminMessage;
                 deleteForm.action = `users/delete/${id}`
             })
         })
@@ -136,9 +147,16 @@
         updateButton.forEach(function (button){
             button.addEventListener('click', function (){
                 let id = button.value,
+                    userRow = button.closest('tr'),
                     updateForm = document.querySelector('#updateForm');
 
+                let lastName = userRow.querySelector(".last-name").innerText.trim();
+                let firstName = userRow.querySelector(".first-name").innerText.trim();
+                let isAdmin = userRow.querySelector(".is-admin").innerText.trim() === "Administrateur" ? 1 : 0;
 
+                updateForm.querySelector("#last_name").value = lastName;
+                updateForm.querySelector("#first_name").value = firstName;
+                updateForm.querySelector("#isAdmin").checked = isAdmin;
                 updateForm.action = `users/update/${id}`
             })
         })

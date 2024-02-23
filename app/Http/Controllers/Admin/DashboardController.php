@@ -40,7 +40,7 @@ class DashboardController extends Controller
 
         unset($validated['isAdmin']);
 
-        //Hash::make($validated['password'])d
+        //Hash::make($validated['password'])
 
         User::create($validated);
 
@@ -60,11 +60,17 @@ class DashboardController extends Controller
         $validated = $request->validate([
             'first_name' => ['required','string','between:2,30'],
             'last_name' => ['required','string','between:2,30'],
+            'isAdmin' => ['nullable','boolean']
         ]);
+
+        $validated['is_admin'] = $request->has('isAdmin');
+
+        unset($validated['isAdmin']);
 
         $user->update([
             'first_name' => $validated['first_name'],
             'last_name' => $validated['last_name'],
+            'is_admin' => $validated['is_admin']
         ]);
 
         return redirect()->route('Dashboard.view')->withStatus('Utilisateur modifié avec succès');
