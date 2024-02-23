@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('rentables', function (Blueprint $table) {
             $table->id();
-            $table->string("rentable_name");
-            $table->string("rentable_type");
-            $table->integer("total_number");
+            $table->string("name");
+            $table->string("type");
+            $table->integer("quantity");
             $table->string("image");
             $table->date("updated_at");
             $table->date("created_at");
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rentable');
+        Schema::dropIfExists('rentables');
     }
 };

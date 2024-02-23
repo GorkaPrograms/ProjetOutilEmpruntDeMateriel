@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer("employee_code");
             $table->string("first_name",50);
             $table->string("last_name",50);
+            $table->string('password')->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->timestamps();
         });
     }
