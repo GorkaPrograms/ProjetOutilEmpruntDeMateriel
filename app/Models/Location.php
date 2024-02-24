@@ -14,5 +14,12 @@ class Location extends Model
         return $this->belongsTo(Rentable::class, 'rentable');
     }
 
+    protected $fillable = [
+        'order_reference',
+        'status',
+        'updated_at',
+        'created_at',
+    ];
+
 
 }

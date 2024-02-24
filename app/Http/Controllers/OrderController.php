@@ -55,7 +55,7 @@ class OrderController extends Controller
 
         // Récupère les colonnes 'name' de la table 'rentables'
         // et 'quantity' de la table 'locations' via une jointure
-        $rentablesItems = Location::select('rentables.name', 'locations.quantity','locations.rentable')
+        $rentablesItems = Location::select('rentables.name', 'locations.quantity','locations.rentable','rentables.image')
             ->join('rentables', 'locations.rentable', '=', 'rentables.id')
             ->where('locations.order_reference', $order->id)
             ->get();
@@ -115,6 +115,17 @@ class OrderController extends Controller
         }
 
         return redirect()->route('order.cart');
+    }
+
+    public function removeProductToCart(Request $request){
+        return redirect()->route('order.cart');
+    }
+
+    public function addProductToCart(Request $request) {
+        $rentable = Rentable::findOrFail($request->input('product_to_add'));
+        $request->session()->push('rentables', $rentable);
+
+        return redirect()->route('home');
     }
 
 }

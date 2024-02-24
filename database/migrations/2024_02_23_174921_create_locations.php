@@ -16,7 +16,6 @@ return new class extends Migration
             // Ajoute la colonne de clé étrangère
             $table->unsignedBigInteger('order_reference');
             $table->unsignedBigInteger('rentable');
-            $table->string("status");
             $table->integer("quantity");
             $table->date("updated_at");
             $table->date("created_at");

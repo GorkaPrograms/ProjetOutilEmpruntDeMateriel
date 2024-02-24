@@ -29,7 +29,6 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function(){
     Route::get('/home', [RentableController::class, 'index'])->name('home');
-    Route::post('/add-product-cart', [CartController::class, 'addProductToCart'])->name('cart.add-product');
     Route::get('/order/cart', [OrderController::class, 'view'])->name('order.cart');
 
     Route::get('/user',function (){
@@ -41,6 +40,8 @@ Route::middleware('auth')->group(function(){
     //routes pour l'ajout ou la suppression de produit dans le panier
     Route::post('/addQuantityToProduct', [OrderController::class, 'addQuantityToProduct'])->name('addQuantityToProduct');
     Route::post('/removeQuantityToProduct', [OrderController::class, 'removeQuantityToProduct'])->name('removeQuantityToProduct');
+    Route::post('/add-product-cart', [OrderController::class, 'addProductToCart'])->name('cart.add-product');
+    Route::post('/remove-product-cart', [OrderController::class, 'removeProductToCart'])->name('cart.remove-product');
 
 
 });

@@ -9,10 +9,5 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    public function addProductToCart(Request $request) {
-        $rentable = Rentable::findOrFail($request->input('product_to_add'));
-        $request->session()->push('rentables', $rentable);
 
-        return redirect()->route('home');
-    }
 }

@@ -9,4 +9,13 @@ class Rentable extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'type',
+        'quantity',
+        'image',
+        'updated_at',
+        'created_at',
+    ];
+
 }
