@@ -38,6 +38,11 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('Login.logout');
 
+    //routes pour l'ajout ou la suppression de produit dans le panier
+    Route::post('/addQuantityToProduct', [OrderController::class, 'addQuantityToProduct'])->name('addQuantityToProduct');
+    Route::post('/removeQuantityToProduct', [OrderController::class, 'removeQuantityToProduct'])->name('removeQuantityToProduct');
+
+
 });
 
 require __DIR__.'/auth.php';

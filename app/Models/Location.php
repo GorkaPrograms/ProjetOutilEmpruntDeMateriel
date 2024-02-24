@@ -9,5 +9,10 @@ class Location extends Model
 {
     use HasFactory;
 
+    public function rentable()
+    {
+        return $this->belongsTo(Rentable::class, 'rentable');
+    }
+
 
 }
