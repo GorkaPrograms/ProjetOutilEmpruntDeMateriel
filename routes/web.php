@@ -29,7 +29,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function(){
     Route::get('/home', [RentableController::class, 'index'])->name('home');
-    Route::get('/order/cart', [OrderController::class, 'view'])->name('order.cart');
+    Route::get('/order/cart', [CartController::class, 'view'])->name('order.cart');
+    Route::get('/order/order_validate', [OrderController::class, 'view'])->name('order.order_validate');
 
     Route::get('/user',function (){
         dump(\Illuminate\Support\Facades\Auth::user());
@@ -38,12 +39,13 @@ Route::middleware('auth')->group(function(){
     Route::post('/logout', [LoginController::class, 'logout'])->name('Login.logout');
 
     //routes pour l'ajout ou la suppression de produit dans le panier
-    Route::post('/addQuantityToProduct', [OrderController::class, 'addQuantityToProduct'])->name('addQuantityToProduct');
-    Route::post('/removeQuantityToProduct', [OrderController::class, 'removeQuantityToProduct'])->name('removeQuantityToProduct');
-    Route::post('/add-product-cart', [OrderController::class, 'addProductToCart'])->name('cart.add-product');
-    Route::post('/remove-product-cart', [OrderController::class, 'removeProductToCart'])->name('cart.remove-product');
+    Route::post('/order/cart/addQuantityToProduct', [CartController::class, 'addQuantityToProduct'])->name('addQuantityToProduct');
+    Route::post('/order/cart/removeQuantityToProduct', [CartController::class, 'removeQuantityToProduct'])->name('removeQuantityToProduct');
+    Route::post('/order/cart/add-product-cart', [CartController::class, 'addProductToCart'])->name('cart.add-product');
+    Route::post('/order/cart/remove-product-cart', [CartController::class, 'removeProductToCart'])->name('cart.remove-product');
 
-
+    //route pour la validation de la location
+    Route::put('/order/order_validate/validate/{id}',[OrderController::class, 'validateOrder'])->name('order.validateOrder');
 });
 
 require __DIR__.'/auth.php';

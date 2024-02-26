@@ -16,7 +16,7 @@ class RentableController extends Controller
 
         if ($search = $request->search) {
             $rentables->where(fn (Builder $query) => $query
-                ->where('rentable_name', 'LIKE', '%' . $search . '%')
+                ->where('name', 'LIKE', '%' . $search . '%')
             );
         }
 

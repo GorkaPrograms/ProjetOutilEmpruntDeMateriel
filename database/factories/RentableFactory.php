@@ -21,7 +21,7 @@ class RentableFactory extends Factory
         return [
             'name' => fake()->unique()->words(3, true),
             'type' => fake()->unique()->words(1, true),
-            'quantity' => fake()->unique()->randomNumber(5),
+            'quantity' => fake()->unique()->randomNumber(2),
             'image' => fake()->imageUrl,
             'created_at' => $date,
             'updated_at' => $date,

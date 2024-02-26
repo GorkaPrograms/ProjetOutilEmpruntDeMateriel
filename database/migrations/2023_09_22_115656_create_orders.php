@@ -16,6 +16,7 @@ return new class extends Migration
             // Ajoute la colonne de clé étrangère
             $table->unsignedBigInteger('user');
             $table->string("status");
+            $table->date("comeback_date")->nullable();
             $table->date("updated_at");
             $table->date("created_at");
 

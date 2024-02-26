@@ -29,7 +29,7 @@
         <tbody>
         @forelse($users as $user)
             <tr class="odd:bg-stone-100 even:bg-stone-200">
-                <td class="py-2 pl-2 last-name"> {{ $user->last_name }} </td>
+                <td class="py-2 pl-2 last-name "> {{ $user->last_name }} </td>
                 <td class="first-name"> {{ $user->first_name }} </td>
                 <td> {{ $user->employee_code }} </td>
                 @if( $user->is_admin == 1)

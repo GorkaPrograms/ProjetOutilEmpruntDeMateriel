@@ -12,6 +12,7 @@ class Order extends Model
     protected $fillable = [
         'user',
         'status',
+        'comback_date',
         'updated_at',
         'created_at',
     ];
