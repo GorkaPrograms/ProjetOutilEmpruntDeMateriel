@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("type");
             $table->integer("quantity");
-            $table->string("image");
+            $table->string("image")->nullable();
             $table->date("updated_at");
             $table->date("created_at");
         });

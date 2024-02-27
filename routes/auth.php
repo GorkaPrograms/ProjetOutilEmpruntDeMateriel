@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function(){
     Route::patch('admin/dashboard/users/update/{user}', [DashboardController::class, 'updateUser'])->name('user.update');
     //Rentables
     Route::get('/admin/dashboard/rentables', [DashboardController::class, 'rentables'])->name('dashboard.rentables');
+    Route::post('/admin/dashboard/rentables/add', [DashboardController::class, 'addRentable'])->name('rentable.add');
+    Route::delete('admin/dashboard/rentables/delete/{rentable}', [DashboardController::class, 'deleteRentable'])->name('rentable.delete');
+    Route::patch('admin/dashboard/rentables/update/{rentable}', [DashboardController::class, 'updateRentable'])->name('rentable.update');
     //Orders
     Route::get('/admin/dashboard/orders', [DashboardController::class, 'orders'])->name('dashboard.orders');
 

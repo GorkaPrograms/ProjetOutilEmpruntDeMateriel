@@ -2,7 +2,11 @@
     <div class="grid grid-cols-3 gap-5">
         @forelse($rentables as $rentable)
             <div class="col-1">
-                <img src="{{ $rentable->image }}">
+                @if($rentable->image != null)
+                    <img src="{{ $rentable->image }}">
+                @else
+                    <img class="min-w-full" src="{{ asset('default-img.jpg') }}">
+                @endif
                 <div class="flex flex-row justify-between mt-1">
                     <p class=""><strong>{{$rentable->name}}</strong></p>
                     @if ($rentable->quantity > 0)

@@ -1,7 +1,7 @@
 <div x-show="deleting === true">
     <div class="bg-black opacity-40 h-screen w-screen fixed top-0 left-0 z-10" x-on:click="deleting = !deleting"></div>
 
-    <div class="bg-white absolute top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
+    <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
         <button x-on:click="deleting = !deleting">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fixed top-2 right-2 text-red-600">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />

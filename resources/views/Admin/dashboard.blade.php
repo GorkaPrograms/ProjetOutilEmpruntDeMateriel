@@ -53,24 +53,24 @@
                 </td>
             </tr>
         @empty
-            <p> Aucun utilisateur trouvé </p>
+            <p class="mb-4"> Aucun utilisateur trouvé </p>
         @endforelse
         </tbody>
     </table>
 
-    <x-modal-delete-form action="{{ route('user.delete', ['user' => $user]) }}" name="l'utilisateur"></x-modal-delete-form>
+    <x-modal-delete-form action="" name="l'utilisateur"></x-modal-delete-form>
 
     {{-- Formulaire de modification d'un utilisateur --}}
     <div x-show="updating === true">
         <div class="fixed bg-gray-900 opacity-20 top-0 left-0 w-full h-full" x-on:click="updating= !updating"></div>
 
-        <div class="bg-white absolute top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
+        <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
             <button x-on:click="updating = !updating">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fixed top-2 right-2 text-red-600">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <form id="updateForm" action="{{ route('user.update', ['user' => $user]) }}" method="POST" class="flex flex-col items-start h-full w-full text-lg pl-8 gap-3">
+            <form id="updateForm" action="" method="POST" class="flex flex-col items-start h-full w-full text-lg pl-8 gap-3">
                 @csrf
                 @method('PATCH')
                 <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Modifier l'utilisateur</h3>
@@ -92,7 +92,7 @@
     <div x-show="add === true">
         <div class="fixed bg-gray-900 opacity-20 top-0 left-0 w-full h-full" x-on:click="add= !add"></div>
 
-        <div class="bg-white absolute top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
+        <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
             <button x-on:click="add = !add">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fixed top-2 right-2 text-red-600">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -132,8 +132,6 @@
                 let isAdmin = userRow.querySelector(".is-admin").innerText.trim() === "Administrateur" ? 1 : 0;
 
                 let isAdminMessage = isAdmin === 1 ? 'Cet utilisateur dispose du grade administrateur' : 'Cet utilisateur ne dispose pas du grade administrateur';
-
-                console.log(isAdminMessage)
 
                 deleteForm.querySelector("#lastName").innerText = lastName;
                 deleteForm.querySelector("#firstName").innerText = firstName;
