@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Rentable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
@@ -49,7 +50,7 @@ class DashboardController extends Controller
         }
 
         return view('admin.dashboard',[
-            'users' => $users->latest()->get()
+            'users' => $users->latest()->paginate(10)
         ]);
     }
 
@@ -128,7 +129,7 @@ class DashboardController extends Controller
         }
 
         return view('admin.manage-rentables',[
-            'rentables' => $rentables->latest()->get()
+            'rentables' => $rentables->latest()->paginate(10)
         ]);
     }
 
@@ -173,7 +174,19 @@ class DashboardController extends Controller
 
 
 
-    public function orders(){
-        return view('admin.manage-orders');
+    public function orders(Request $request):View{
+        $orders = Order::query();
+
+        if ($search = $request->search) {
+            $orders->where(fn (Builder $query) => $query
+                ->where('user', 'LIKE', '%' . $search . '%')
+                ->orWhere('status', 'LIKE', '%' . $search . '%')
+                ->orWhere('id', 'LIKE', '%' . $search . '%')
+            );
+        }
+
+        return view('admin.manage-orders',[
+            'orders' => $orders->latest()->paginate(10),
+        ]);
     }
 }

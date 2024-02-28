@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Computer Material Lending'),
+    'name' => env('APP_NAME', 'GearToGo'),
 
     /*
     |--------------------------------------------------------------------------
