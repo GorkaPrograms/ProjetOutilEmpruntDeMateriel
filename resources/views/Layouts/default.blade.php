@@ -63,7 +63,7 @@
                 >
                     <li><a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes locations</a></li>
                     @if (Auth::user()->is_admin)
-                    <li><a href="{{ route('Dashboard.view') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a></li>
+                    <li><a href="{{ route('admin.check.password') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a></li>
                     @endif
                     <li>
                         <form action="{{route('Login.logout')}}" class="flex items-center px-4 py-2 font-semibold text-sm text-indigo-700 hover:bg-gray-100" method="POST">

@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\AuthAdmin\LoginController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AdminAuthenticated;
 
 Route::middleware('guest')->group(function () {
     Route::get('admin/login', [LoginController::class, 'view'])->name('AdminMiddleware.Login.View');
@@ -14,6 +15,16 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function(){
+
+    Route::post('admin/logout', [LoginController::class, 'logout'])->name('AdminMiddleware.Logout');
+
+    //Connexion espace admin
+    Route::post('/admin/verify-password', [AdminLoginController::class, 'verifyAdminPassword'])->name('admin.verify.password');
+    Route::get('/admin/check-password', [AdminLoginController::class, 'view'])->name('admin.check.password');
+});
+
+Route::middleware(['auth', 'admin.auth'])->group(function(){
+
     //Users
     Route::get('/admin/dashboard/users', [DashboardController::class, 'view'])->name('Dashboard.view');
     Route::post('/admin/dashboard/users/add', [DashboardController::class, 'addUser'])->name('user.add');
@@ -26,8 +37,6 @@ Route::middleware('auth')->group(function(){
     Route::patch('admin/dashboard/rentables/update/{rentable}', [DashboardController::class, 'updateRentable'])->name('rentable.update');
     //Orders
     Route::get('/admin/dashboard/orders', [DashboardController::class, 'orders'])->name('dashboard.orders');
-
-    Route::post('admin/logout', [LoginController::class, 'logout'])->name('AdminMiddleware.Logout');
 });
 
 
