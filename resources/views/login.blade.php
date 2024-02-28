@@ -9,6 +9,8 @@
         <title>Connexion - GearToGo</title>
         @vite('resources/css/app.css')
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <link rel="icon" type="image/x-icon" href="{{ URL('images/website_logo/GearToGoFiveIcon.png') }}" sizes="32x32">
+        <link rel="icon" type="image/x-icon" href="{{ URL('images/website_logo/GearToGoFiveIcon.png') }}" sizes="192x192">
     </head>
     <body class="antialiased pt-5">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="icon" type="image/x-icon" href="{{ URL('images/website_logo/GearToGoFiveIcon.png') }}" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="{{ URL('images/website_logo/GearToGoFiveIcon.png') }}" sizes="192x192">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased pt-5 pb-16 md:pb-32">
@@ -15,9 +17,8 @@
     <header class="flex justify-between items-center space-x-5 text-slate-900">
         {{-- Logo --}}
         <a href="{{ route('home') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-            </svg>
+            <img src="{{ URL('images/website_logo/GearToGo.png') }}" alt="" class="h-12 w-auto">
+
 
         </a>
             <p class="text-4xl"> {{ $name }} </p>

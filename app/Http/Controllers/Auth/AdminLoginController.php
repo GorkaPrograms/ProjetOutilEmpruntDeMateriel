@@ -28,7 +28,7 @@ class AdminLoginController extends Controller
         // Vérifier si l'utilisateur est un administrateur
         if (!$user->is_admin) {
             // Si l'utilisateur n'est pas un administrateur, rediriger avec un message d'erreur
-            return redirect()->back()->with('error', 'Vous n\'avez pas les autorisations nécessaires pour accéder aux pannel administratif.');
+            return redirect()->back()->with('error', 'Vous n\'avez pas les autorisations nécessaires pour accéder au pannel administratif.');
         }
 
         // Vérifier si le mot de passe administrateur est correct
