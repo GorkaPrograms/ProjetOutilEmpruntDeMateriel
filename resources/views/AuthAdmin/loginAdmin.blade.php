@@ -22,7 +22,7 @@
                 </ul>
             </div>
         @endif
-        <form method="POST" action="{{ route('Admin.Login.Store') }}">
+        <form method="POST" action="{{ route('AdminMiddleware.Login.Store') }}">
             @csrf
             <input name="email" id="email" type="email" placeholder="Email" class="mt-4 py-3 w-full border border-gray-400 py-1 px-2" required>
             <input name="password" id="password" type="password" placeholder="Mot de passe" class="mt-4 py-3 w-full border border-gray-400 py-1 px-2" required>
