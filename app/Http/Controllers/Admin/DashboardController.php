@@ -189,4 +189,6 @@ class DashboardController extends Controller
             'orders' => $orders->latest()->paginate(10),
         ]);
     }
+
+
 }

@@ -23,23 +23,22 @@
             </header>
 
             <main class="-mt-[68px] flex justify-center items-center h-screen">
-                @if ($errors->any())
-                    <div>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <div class="flex justify-center items-center w-[200px] h-full">
+                <div class="flex flex-col justify-center items-center w-[200px] h-full">
                     <form action="{{ route('Login.Login') }}" method="POST" class="flex flex-col">
                         @csrf
                         <input type="text" name="employee_code" placeholder="Code employé" class="text-2xl rounded-md mb-5 bg-stone-100 py-2 px-4 border-2 border-stone-400">
                         <button type="submit" class="text-2xl flex flex-row justify-center shadow-inner bg-stone-200 p-1 rounded-md hover:bg-[#494958] hover:scale-110 hover:cursor-pointer hover:text-white ease-in-out duration-200">S'authentifier</button>
                     </form>
+                    @if ($errors->any())
+                        <div class="flex flex-col items-center justify-center">
+                            <ul class="flex flex-col items-center justify-center">
+                                @foreach ($errors->all() as $error)
+                                    <li class="">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
-
             </main>
         </div>
     </body>

@@ -85,7 +85,7 @@
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>
                 </div>
                 <div class="w-full flex justify-between px-24 mb-4">
-                    <button type="submit" class="w-fit px-8 py-1 bg-blue-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-blue-500 transition duration-200">Valider</button>
+                    <button type="submit" class="w-fit px-8 py-1 bg-green-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-500 transition duration-200">Valider</button>
                     <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="updating = !updating">Annuler</button>
                 </div>
             </form>
@@ -113,7 +113,7 @@
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>
                 </div>
                 <div class="w-full flex justify-between px-24 mb-4">
-                    <button type="submit" class="w-fit px-8 py-1 bg-blue-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-blue-500 transition duration-200">Valider</button>
+                    <button type="submit" class="w-fit px-8 py-1 bg-green-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-500 transition duration-200">Valider</button>
                     <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="add = !add">Annuler</button>
                 </div>
             </form>
