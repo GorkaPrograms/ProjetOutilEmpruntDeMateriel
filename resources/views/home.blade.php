@@ -1,4 +1,9 @@
 <x-layout>
+    @if (session('outOfQuantity'))
+        <div class="w-full p-4 bg-red-600 alert alert-success flex justify-center items-center rounded-lg my-4">
+            <p class="text-white">{{ session('outOfQuantity') }}</p>
+        </div>
+    @endif
     <div class="grid grid-cols-3 gap-5">
         @forelse($rentables as $rentable)
             <div class="col-1">

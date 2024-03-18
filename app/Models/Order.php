@@ -10,6 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'user',
         'status',
         'comback_date',

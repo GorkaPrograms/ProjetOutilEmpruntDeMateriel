@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use function PHPUnit\Framework\isEmpty;
 
 class CartController extends Controller
 {
@@ -71,22 +72,29 @@ class CartController extends Controller
     }
 
     public function addQuantityToProduct(Request $request){
-        $rentable = Rentable::findOrFail($request->input('product_to_add'));
-
         $rentablesArray = Session::get('rentables');
 
         // Créer un tableau pour stocker les quantités de chaque produit dans le panier
         $quantites = array_count_values(array_column($rentablesArray, 'id'));
 
-        $rentable = Rentable::find($request->input('product_to_add'));
+        $productId = $request->input('product_to_add');
 
-        if($rentable->quantity > $quantites[$rentable['id']]){
+        if ($this->checkQuantityAvailable($productId, $quantites[$productId])) {
+            $rentable = Rentable::findOrFail($productId);
             $request->session()->push('rentables', $rentable);
-        }else{
-            return redirect('/order/cart')->with(['outOfQuantity' => 'nous ne disposons pas de plus de quantité pour ce produit']);
+        } else {
+            $rentable = Rentable::findOrFail($productId);
+            $rentableName = $rentable->name;
+            return redirect('/order/cart')->with(['outOfQuantity' => "Nous ne disposons pas de plus de quantité pour $rentableName"]);
         }
 
         return redirect()->route('order.cart');
+    }
+
+    private function checkQuantityAvailable($productId, $quantity) {
+        $rentable = Rentable::findOrFail($productId);
+
+        return $rentable->quantity > $quantity;
     }
 
     public function removeQuantityToProduct(Request $request)
@@ -159,8 +167,26 @@ class CartController extends Controller
     }
 
     public function addProductToCart(Request $request) {
-        $rentable = Rentable::findOrFail($request->input('product_to_add'));
-        $request->session()->push('rentables', $rentable);
+        $rentablesArray = Session::get('rentables');
+
+        // Créer un tableau pour stocker les quantités de chaque produit dans le panier
+        $quantites = array_count_values(array_column($rentablesArray, 'id'));
+
+        $productId = $request->input('product_to_add');
+
+        if (!empty($rentablesArray)) {
+            if ($this->checkQuantityAvailable($productId, $quantites[$productId])) {
+                $rentable = Rentable::findOrFail($productId);
+                $request->session()->push('rentables', $rentable);
+            } else {
+                $rentable = Rentable::findOrFail($productId);
+                $rentableName = $rentable->name;
+                return redirect('/home')->with(['outOfQuantity' => "Nous ne disposons pas de plus de quantité pour $rentableName"]);
+            }
+        } else {
+            $rentable = Rentable::findOrFail($productId);
+            $request->session()->push('rentables', $rentable);
+        }
 
         return redirect()->route('home');
     }

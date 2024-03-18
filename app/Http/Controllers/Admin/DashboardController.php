@@ -175,19 +175,21 @@ class DashboardController extends Controller
 
 
     public function orders(Request $request):View{
-        $orders = Order::query();
+        $query = Order::select('orders.id','orders.status','orders.comeback_date','orders.updated_at','orders.created_at','user.first_name','user.last_name')
+            ->join('user','user.id', '=' ,'orders.user');
 
         if ($search = $request->search) {
-            $orders->where(fn (Builder $query) => $query
-                ->where('user', 'LIKE', '%' . $search . '%')
-                ->orWhere('status', 'LIKE', '%' . $search . '%')
-                ->orWhere('id', 'LIKE', '%' . $search . '%')
-            );
+            $query->where(function ($query) use ($search) {
+                $query->where('user.first_name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('user.last_name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('orders.status', 'LIKE', '%' . $search . '%')
+                    ->orWhere('orders.id', 'LIKE', '%' . $search . '%');
+            });
         }
 
-        return view('admin.manage-orders',[
-            'orders' => $orders->latest()->paginate(10),
-        ]);
+        $orders = $query->latest()->paginate(10);
+
+        return view('admin.manage-orders',compact('orders'));
     }
 
 

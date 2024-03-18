@@ -28,11 +28,11 @@
             <tbody>
             @forelse($orders as $order)
                 <tr class="odd:bg-stone-100 even:bg-stone-200">
-                    <td class="py-2 pl-2 id"> {{ $order->id }} </td>
-                    <td class="author"> {{ $order->user }} </td>
-                    <td class="status"> {{ $order->status }} </td>
-                    <td class="lending_on"> Le {{ $order->created_at->format('d/m/Y') }} </td>
-                    <td class="comeback_on"> Le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </td>
+                    <td id="id" class="py-2 pl-2"> {{ $order->id }} </td>
+                    <td id="author"> {{ $order->first_name }} {{ $order->last_name }}</td>
+                    <td id="status"> {{ $order->status }} </td>
+                    <td id="lending_on"> Le {{ $order->created_at->format('d/m/Y') }} </td>
+                    <td id="comeback_on"> Le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </td>
                     <td>
                         <div class="w-full flex justify-center">
                         <button id="detailsButton" value="{{$order->id }}" type="button" x-on:click="details = !details" class="px-5 py-0.5 flex justify-center items-center gap-2 bg-green-600 text-gray-50 rounded-full {{-- Partie hover --}} hover:bg-green-500 hover:scale-105 transition duration-200"> Voir plus
@@ -65,8 +65,10 @@
                 <div id="detailsModal">
                     <h1 class="text-xl font-bold underline underline-offset-2">Détails de l'emprunt N°<span id="lendId"></span></h1>
                     <div>
-                        <p><strong>Loué à : </strong> <text id="lending_at">Jean Paul</text> <strong> le </strong> <text id="lending_on"> 27/11/2023 </text> </p>
-                        <p><strong>La date de retour des objets loués est fixée au :</strong> <text id="return_on"> 29/05/2024 </text></p>
+                        <p id="nameOfTheOwner"></p>
+                        <p id="dateOfRentable"></p>
+                        <p id="status"></p>
+                        <p id="returnDate"></p>
                     </div>
                 </div>
                 <div class="w-full flex justify-center px-24 mb-4">
@@ -78,16 +80,25 @@
     </div>
 
     <script>
-
         const detailsButton = document.querySelectorAll('#detailsButton')
         detailsButton.forEach(function (button){
             button.addEventListener('click', function(){
                 let orderRow = button.closest('tr'),
                     detailsModal = document.querySelector("#detailsModal");
 
-                let lendId = orderRow.querySelector(".id").innerText.trim();
+                let lendId = orderRow.querySelector("#id").innerText.trim();
+                let user = orderRow.querySelector("#author").innerText.trim();
+                let status = orderRow.querySelector("#status").innerText.trim();
+                let lendingOn = orderRow.querySelector("#lending_on").innerText.trim();
 
-                detailsModal.querySelector("#lendId").textContent = lendId;
+
+                //let name = orderRow.querySelector(".")
+
+                detailsModal.querySelector("#nameOfTheOwner").textContent = lendId;
+                detailsModal.querySelector("#dateOfRentable").textContent = user;
+                detailsModal.querySelector("#status").textContent = status;
+                detailsModal.querySelector("#returnDate").textContent = lendingOn;
+
             })
         })
 
