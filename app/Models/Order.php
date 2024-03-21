@@ -17,4 +17,13 @@ class Order extends Model
         'updated_at',
         'created_at',
     ];
+
+    public function rentables() {
+        return $this->belongsToMany(Rentable::class, "locations", "order_reference", "rentable")
+            ->withPivot('quantity');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user');
+    }
 }

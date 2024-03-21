@@ -56,19 +56,26 @@
         <div x-show="details === true">
             <div class="fixed bg-gray-900 opacity-20 top-0 left-0 w-full h-full" x-on:click="details= !details"></div>
 
-            <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
+            <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md p-4">
                 <button x-on:click="details = !details">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fixed top-2 right-2 text-red-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div id="detailsModal">
+                <div id="orderInformation">
                     <h1 class="text-xl font-bold underline underline-offset-2">Détails de l'emprunt N°<span id="lendId"></span></h1>
                     <div>
+                        <p id="idOrder"></p>
                         <p id="nameOfTheOwner"></p>
                         <p id="dateOfRentable"></p>
-                        <p id="status"></p>
+                        <p id="statusOrder"></p>
                         <p id="returnDate"></p>
+                    </div>
+                </div>
+                <div id="productInsideOrder">
+                    <h1 class="text-xl font-bold underline underline-offset-2">Produit(s) emprunté(s)</h1>
+                    <div id="rentables-list">
+                        <div></div>
                     </div>
                 </div>
                 <div class="w-full flex justify-center px-24 mb-4">
@@ -80,27 +87,68 @@
     </div>
 
     <script>
-        const detailsButton = document.querySelectorAll('#detailsButton')
-        detailsButton.forEach(function (button){
-            button.addEventListener('click', function(){
-                let orderRow = button.closest('tr'),
-                    detailsModal = document.querySelector("#detailsModal");
+        const showButtons = document.querySelectorAll('#detailsButton');
 
-                let lendId = orderRow.querySelector("#id").innerText.trim();
-                let user = orderRow.querySelector("#author").innerText.trim();
-                let status = orderRow.querySelector("#status").innerText.trim();
-                let lendingOn = orderRow.querySelector("#lending_on").innerText.trim();
+        showButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const orderId = button.value;
 
+                // Faire une requête AJAX pour récupérer les données de l'événement
+                fetch(`/getData/${orderId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        const fieldsMapping = {
+                            'idOrder': 'id',
+                            'nameOfTheOwner': 'user',
+                            'dateOfRentable': 'created_at',
+                            'statusOrder': 'status',
+                            'returnDate': 'comeback_date'
+                        };
 
-                //let name = orderRow.querySelector(".")
+                        for (const fieldId in fieldsMapping) {
+                            const paraElement = document.getElementById(fieldId);
+                            const dataKey = fieldsMapping[fieldId];
+                            const dataValue = data[dataKey];
 
-                detailsModal.querySelector("#nameOfTheOwner").textContent = lendId;
-                detailsModal.querySelector("#dateOfRentable").textContent = user;
-                detailsModal.querySelector("#status").textContent = status;
-                detailsModal.querySelector("#returnDate").textContent = lendingOn;
+                            if (paraElement && dataValue) {
+                                // Mettre à jour le texte des balises <p>
+                                paraElement.textContent = dataValue;
+                            }
+                        }
 
-            })
-        })
+                        // mettre a jour les produits
+                        const rentablesListElement = document.getElementById("rentables-list");
+
+                        // Supprimer les produits de la modal
+                        for (const child of rentablesListElement.children) {
+                            rentablesListElement.removeChild(child);
+                        }
+
+                        // Ajouter les nouveaux produits à afficher
+                        for (const rentable of data.rentables) {
+                            const rentableElement = document.createElement('div');
+
+                            const nameElement = document.createElement('p');
+                            nameElement.textContent = rentable.name;
+
+                            const quantityElement = document.createElement('p');
+                            quantityElement.textContent = `Quantité(s): ${rentable.pivot.quantity}`
+                            // Ajouter du style à l'élément
+                            //quantityElement.style.backgroundColor = "red";
+                            // Ajouter une classe dans l'élément
+                            //quantityElement.classList.add("rentable");
+
+                            rentableElement.appendChild(nameElement);
+                            rentableElement.appendChild(quantityElement);
+                            rentablesListElement.appendChild(rentableElement);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Une erreur est survenue : ', error);
+                    });
+            });
+        });
 
     </script>
 
