@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="{{ URL('images/website_logo/GearToGoFiveIcon.png') }}" sizes="192x192">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased pt-5 pb-16 md:pb-32">
+<body class="antialiased pt-5 pb-16 md:pb-32 bg-neutral-50">
 {{-- Conteneur global --}}
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     {{-- Header --}}
@@ -18,7 +18,6 @@
         {{-- Logo --}}
         <a href="{{ route('home') }}">
             <img src="{{ URL('images/website_logo/GearToGo.png') }}" alt="" class="h-12 w-auto">
-
         </a>
         <div class="flex flex-row items-center gap-4">
             {{--Panier--}}

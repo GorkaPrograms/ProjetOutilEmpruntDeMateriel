@@ -171,14 +171,20 @@ class DashboardController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('uploads'), $imageName);
             $validated['image'] = 'uploads/' . $imageName;
-        }
 
-        $rentable->update([
-            'name' => $validated['name'],
-            'type' => $validated['type'],
-            'quantity' => $validated['quantity'],
-            'image' => $validated['image']
-        ]);
+            $rentable->update([
+                'name' => $validated['name'],
+                'type' => $validated['type'],
+                'quantity' => $validated['quantity'],
+                'image' => $validated['image']
+            ]);
+        }else{
+            $rentable->update([
+                'name' => $validated['name'],
+                'type' => $validated['type'],
+                'quantity' => $validated['quantity'],
+            ]);
+        }
 
         return redirect()->back()->withStatus('Produit modifié avec succès');
     }

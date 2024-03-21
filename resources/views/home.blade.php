@@ -7,11 +7,11 @@
     <div class="grid grid-cols-3 gap-5">
         @forelse($rentables as $rentable)
             <div class="col-1">
-                <div class="w-full h-[350px]">
+                <div class="w-full h-[350px] bg-white rounded-2xl">
                     @if ($rentable->image != null )
-                        <img class="object-contain rounded-2xl w-full h-full shadow-lg" src="{{ asset($rentable->image) }}">
+                        <img class="object-contain rounded-2xl w-full h-full shadow-xl" src="{{ asset($rentable->image) }}">
                     @else
-                        <img class="object-cover rounded-2xl w-full h-full shadow-md" src="{{ asset('default-img.jpg') }}">
+                        <img class="object-cover rounded-2xl w-full h-full shadow-xl" src="{{ asset('default-img.jpg') }}">
                     @endif
                 </div>
                 <div class="flex flex-row justify-between mt-2">
