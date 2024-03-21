@@ -82,6 +82,9 @@ class CartController extends Controller
         if ($this->checkQuantityAvailable($productId, $quantites[$productId])) {
             $rentable = Rentable::findOrFail($productId);
             $request->session()->push('rentables', $rentable);
+            $rentable->update([
+                'quantity' => $rentable->quantity - 1
+            ]);
         } else {
             $rentable = Rentable::findOrFail($productId);
             $rentableName = $rentable->name;
@@ -93,14 +96,24 @@ class CartController extends Controller
 
     private function checkQuantityAvailable($productId, $quantity) {
         $rentable = Rentable::findOrFail($productId);
+        if($rentable->quantity > 0){
+            return true;
+        }else{
+            return false;
+        }
 
-        return $rentable->quantity > $quantity;
+        //return $rentable->quantity > $quantity;
     }
 
     private function checkQuantityAvailableInCart($productId, $quantity) {
         $rentable = Rentable::findOrFail($productId);
+        if($rentable->quantity > 0){
+            return true;
+        }else{
+            return false;
+        }
 
-        return $rentable->quantity >= $quantity;
+        //return $rentable->quantity >= $quantity;
     }
 
     public function removeQuantityToProduct(Request $request)
@@ -198,7 +211,6 @@ class CartController extends Controller
             $rentable->update([
                 'quantity' => $rentable->quantity - 1
             ]);
-
             return redirect()->route('home');
         } else {
             array_pop($rentablesArray);
