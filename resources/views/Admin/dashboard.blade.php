@@ -6,7 +6,7 @@
         <button type="button" x-on:click="add = !add" class="bg-stone-200 rounded-full p-1 px-3 text-lg hover:bg-[#494958] hover:text-gray-50 hover:scale-105 transition duration-200"> Ajouter un utilisateur </button>
         {{-- Formulaire de recherche --}}
         <form action="" class="w-64 pb-3 pr-2 flex items-center border-b border-b-slate-300 text-slate-300 focus-within:border-b-slate-900 focus-within:text-slate-900 transition">
-            <input id="search" value="{{ request()->search }}" class="px-2 w-full outline-none leading-none placeholder-slate-400" type="search" name="search" placeholder="Rechercher un utilisateur">
+            <input id="search" value="{{ request()->search }}" class="bg-neutral-50 px-2 w-full outline-none leading-none placeholder-slate-400" type="search" name="search" placeholder="Rechercher un utilisateur">
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
@@ -78,8 +78,8 @@
                 @csrf
                 @method('PATCH')
                 <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Modifier l'utilisateur</h3>
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="last_name" id="last_name" placeholder="Nom">
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="first_name" id=first_name placeholder="Prénom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="last_name" id="last_name" placeholder="Nom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="first_name" id=first_name placeholder="Prénom">
                 <div class="flex flex-row justify-center items-center gap-2 text-lg">
                     <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin" value="1">
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>
@@ -106,8 +106,8 @@
                 @csrf
                 @method('POST')
                 <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Ajouter un utilisateur</h3>
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="last_name" id="last_name" placeholder="Nom">
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px]" type="text" name="first_name" id=first_name placeholder="Prénom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="last_name" id="last_name" placeholder="Nom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="first_name" id=first_name placeholder="Prénom">
                 <div class="flex flex-row justify-center items-center gap-2 text-lg">
                     <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin" value="1">
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>

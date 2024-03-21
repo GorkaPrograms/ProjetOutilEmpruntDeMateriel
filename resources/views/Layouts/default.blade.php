@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="{{ URL('images/website_logo/GearToGoFiveIcon.png') }}" sizes="192x192">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased pt-5 pb-16 md:pb-32">
+<body class="antialiased pt-5 pb-16 md:pb-32 bg-neutral-50">
 {{-- Conteneur global --}}
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     {{-- Header --}}
@@ -22,7 +22,7 @@
         </a>
         {{-- Formulaire de recherche --}}
         <form action="" class="pb-3 pr-2 flex items-center border-b border-b-slate-300 text-slate-300 focus-within:border-b-slate-900 focus-within:text-slate-900 transition">
-            <input id="search" value="{{ request()->search }}" class="px-2 w-full outline-none leading-none placeholder-slate-400" type="search" name="search" placeholder="Rechercher un article">
+            <input id="search" value="{{ request()->search }}" class="bg-neutral-50 px-2 w-full outline-none leading-none placeholder-slate-400" type="search" name="search" placeholder="Rechercher un article">
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
