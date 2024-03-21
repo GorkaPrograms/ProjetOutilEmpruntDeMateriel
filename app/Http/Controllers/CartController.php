@@ -169,12 +169,12 @@ class CartController extends Controller
     public function addProductToCart(Request $request) {
         $rentablesArray = Session::get('rentables');
 
-        // Créer un tableau pour stocker les quantités de chaque produit dans le panier
-        $quantites = array_count_values(array_column($rentablesArray, 'id'));
-
         $productId = $request->input('product_to_add');
 
         if (!empty($rentablesArray)) {
+            // Créer un tableau pour stocker les quantités de chaque produit dans le panier
+            $quantites = array_count_values(array_column($rentablesArray, 'id'));
+
             if ($this->checkQuantityAvailable($productId, $quantites[$productId])) {
                 $rentable = Rentable::findOrFail($productId);
                 $request->session()->push('rentables', $rentable);

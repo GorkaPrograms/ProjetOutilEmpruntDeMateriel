@@ -193,7 +193,8 @@ class DashboardController extends Controller
 
     public function orders(Request $request):View{
         $query = Order::select('orders.id','orders.status','orders.comeback_date','orders.updated_at','orders.created_at','user.first_name','user.last_name')
-            ->join('user','user.id', '=' ,'orders.user');
+            ->join('user','user.id', '=' ,'orders.user')
+            ->with("rentables");
 
         if ($search = $request->search) {
             $query->where(function ($query) use ($search) {
@@ -207,6 +208,18 @@ class DashboardController extends Controller
         $orders = $query->latest()->paginate(10);
 
         return view('admin.manage-orders',compact('orders'));
+    }
+
+    public function getData($id)
+    {
+        $order = Order::where("id", $id)->with(['rentables', 'user'])->first(); // Récupérer l'événement en fonction de l'ID
+
+        if (!$order) {
+            return response()->json(['error' => 'Événement non trouvé'], 404);
+        }
+
+        // Retourner les données de l'événement au format JSON
+        return response()->json($order);
     }
 
 
