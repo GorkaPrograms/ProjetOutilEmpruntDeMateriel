@@ -6,13 +6,34 @@ use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\Order;
 use App\Models\Rentable;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
     public function view(){
         return view('order.order');
+    }
+
+    public function showMyOrders(Request $request){
+        $user = Auth::user();
+        $orders = Order::query()->where('user', $user->id);
+
+        if ($search = $request->search) {
+            $orders->where(fn (Builder $query) => $query
+                ->where('id', 'LIKE', '%' . $search . '%')
+                ->orWhere('status', 'LIKE', '%' . $search . '%')
+                ->orWhere('comeback_date', 'LIKE', '%' . $search . '%')
+                ->orWhere('created_at', 'LIKE', '%' . $search . '%')
+            );
+        }
+
+        return view('order.my-orders',[
+            'orders' => $orders->latest()->paginate(10)
+        ]);
     }
 
     public function validateOrder(Request $request, $id){

@@ -20,15 +20,6 @@
             <img src="{{ URL('images/website_logo/GearToGo.png') }}" alt="" class="h-12 w-auto">
 
         </a>
-        {{-- Formulaire de recherche --}}
-        <form action="" class="pb-3 pr-2 flex items-center border-b border-b-slate-300 text-slate-300 focus-within:border-b-slate-900 focus-within:text-slate-900 transition">
-            <input id="search" value="{{ request()->search }}" class="px-2 w-full outline-none leading-none placeholder-slate-400" type="search" name="search" placeholder="Rechercher un article">
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
-                </svg>
-            </button>
-        </form>
         <div class="flex flex-row items-center gap-4">
             {{--Panier--}}
             <a href="{{route('order.cart')}}" class="relative justify-center p-2 items-center">
@@ -65,7 +56,7 @@
                 >
                     <li><a href="{{route('my.orders')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mes locations</a></li>
                     @if (Auth::user()->is_admin)
-                    <li><a href="{{ route('admin.check.password') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a></li>
+                        <li><a href="{{ route('admin.check.password') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a></li>
                     @endif
                     <li>
                         <form action="{{route('Login.logout')}}" class="flex items-center px-4 py-2 font-semibold text-sm text-indigo-700 hover:bg-gray-100" method="POST">

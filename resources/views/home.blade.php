@@ -8,9 +8,11 @@
         @forelse($rentables as $rentable)
             <div class="col-1">
                 @if($rentable->image != null)
-                    <img class="rounded-2xl" src="{{ $rentable->image }}">
+                    <img class="min-w-full max-w-full h-[400px] rounded-2xl shadow-lg" src="{{ asset($rentable->image) }}">
                 @else
-                    <img class="min-w-full rounded-2xl" src="{{ asset('default-img.jpg') }}">
+                    <p class="h-[65px]"> </p>
+                    <img class="min-w-full max-w-full rounded-2xl shadow-md" src="{{ asset('default-img.jpg') }}">
+                    <p class="h-[65px]"> </p>
                 @endif
                 <div class="flex flex-row justify-between mt-1">
                     <p class=""><strong>{{$rentable->name}}</strong></p>

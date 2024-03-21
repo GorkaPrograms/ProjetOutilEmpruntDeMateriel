@@ -137,8 +137,16 @@ class DashboardController extends Controller
         $validated = $request->validate([
             'name' => ['required','string','between:2,50'],
             'type' => ['required','string','between:2,60'],
-            'quantity' => ['required', 'integer', 'min:1']
+            'quantity' => ['required', 'integer', 'min:1'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif']
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('uploads'), $imageName);
+            $validated['image'] = 'uploads/' . $imageName;
+        }
 
         Rentable::create($validated);
 
@@ -154,13 +162,22 @@ class DashboardController extends Controller
         $validated = $request->validate([
             'name' => ['required','string','between:2,30'],
             'type' => ['required','string','between:2,30'],
-            'quantity' => ['required','integer','min:1']
+            'quantity' => ['required','integer','min:1'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif']
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('uploads'), $imageName);
+            $validated['image'] = 'uploads/' . $imageName;
+        }
 
         $rentable->update([
             'name' => $validated['name'],
             'type' => $validated['type'],
-            'quantity' => $validated['quantity']
+            'quantity' => $validated['quantity'],
+            'image' => $validated['image']
         ]);
 
         return redirect()->back()->withStatus('Produit modifié avec succès');
