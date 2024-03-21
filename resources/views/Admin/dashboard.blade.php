@@ -78,14 +78,14 @@
                 @csrf
                 @method('PATCH')
                 <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Modifier l'utilisateur</h3>
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="last_name" id="last_name" placeholder="Nom">
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="first_name" id=first_name placeholder="Prénom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="last_name" id="last_name" placeholder="Nom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="first_name" id=first_name placeholder="Prénom">
                 <div class="flex flex-row justify-center items-center gap-2 text-lg">
                     <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin" value="1">
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>
                 </div>
                 <div class="w-full flex justify-between px-24 mb-4">
-                    <button type="submit" class="w-fit px-8 py-1 bg-green-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-500 transition duration-200">Valider</button>
+                    <button type="submit" class="w-fit px-8 py-1 bg-logo-green rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-600 transition duration-200">Valider</button>
                     <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="updating = !updating">Annuler</button>
                 </div>
             </form>
@@ -106,14 +106,14 @@
                 @csrf
                 @method('POST')
                 <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Ajouter un utilisateur</h3>
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="last_name" id="last_name" placeholder="Nom">
-                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="first_name" id=first_name placeholder="Prénom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="last_name" id="last_name" placeholder="Nom">
+                <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="first_name" id=first_name placeholder="Prénom">
                 <div class="flex flex-row justify-center items-center gap-2 text-lg">
                     <input class="w-4 h-4" type="checkbox" id="isAdmin" name="isAdmin" value="1">
                     <label for="isAdmin">L'utilisateur est-il administrateur ?</label>
                 </div>
                 <div class="w-full flex justify-between px-24 mb-4">
-                    <button type="submit" class="w-fit px-8 py-1 bg-green-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-500 transition duration-200">Valider</button>
+                    <button type="submit" class="w-fit px-8 py-1 bg-logo-green rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-600 transition duration-200">Valider</button>
                     <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="add = !add">Annuler</button>
                 </div>
             </form>

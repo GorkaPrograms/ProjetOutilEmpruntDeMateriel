@@ -67,7 +67,7 @@
                     <li><a href="{{ route('admin.check.password') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a></li>
                     @endif
                     <li>
-                        <form action="{{route('Login.logout')}}" class="flex items-center px-4 py-2 font-semibold text-sm text-indigo-700 hover:bg-gray-100" method="POST">
+                        <form action="{{route('Login.logout')}}" class="flex items-center px-4 py-2 font-semibold text-sm text-logo-green hover:bg-gray-100" method="POST">
                             @csrf
                             <button type="submit" class="flex items-center">Déconnexion
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 ml-1">

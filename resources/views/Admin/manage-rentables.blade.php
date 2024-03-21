@@ -74,13 +74,13 @@
                     @csrf
                     @method('PATCH')
                     <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Modifier le produit</h3>
-                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="name" id="name" placeholder="Nom du produit">
-                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="type" id="type" placeholder="Type de produit">
-                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="number" name="quantity" id="quantity" placeholder="Quantité">
+                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="name" id="name" placeholder="Nom du produit">
+                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="type" id="type" placeholder="Type de produit">
+                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="number" name="quantity" id="quantity" placeholder="Quantité">
                     <label for="product_image">Image du produit</label>
                     <input id="product_image" type="file" accept="image/*" name="image">
                     <div class="w-full flex justify-between px-24 mb-4">
-                        <button type="submit" class="w-fit px-8 py-1 bg-green-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-500 transition duration-200">Valider</button>
+                        <button type="submit" class="w-fit px-8 py-1 bg-logo-green rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-600 transition duration-200">Valider</button>
                         <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="updating = !updating">Annuler</button>
                     </div>
                 </form>
@@ -101,13 +101,13 @@
                     @csrf
                     @method('POST')
                     <h3 class="font-medium text-xl underline underline-offset-2 px-6 py-2">Ajouter un produit</h3>
-                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="name" id="name" placeholder="Nom du produit">
-                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="text" name="type" id=type" placeholder="Type de produit">
-                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-green-500" type="number" name="quantity" id=quantity" placeholder="Quantité">
+                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="name" id="name" placeholder="Nom du produit">
+                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="text" name="type" id=type" placeholder="Type de produit">
+                    <input class="shadow-md p-1 rounded-xl bg-stone-100 min-w-[250px] ring-2 ring-logo-green" type="number" name="quantity" id=quantity" placeholder="Quantité">
                     <label for="image">Image du produit</label>
                     <input id="image" type="file" accept="image/*" name="image">
                     <div class="w-full flex justify-between px-24 mb-4">
-                        <button type="submit" class="w-fit px-8 py-1 bg-green-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-500 transition duration-200">Valider</button>
+                        <button type="submit" class="w-fit px-8 py-1 bg-logo-green rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-600 transition duration-200">Valider</button>
                         <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="add = !add">Annuler</button>
                     </div>
                 </form>

@@ -35,7 +35,7 @@
                     <td id="comeback_on"> Le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </td>
                     <td>
                         <div class="w-full flex justify-center">
-                        <button id="detailsButton" value="{{$order->id }}" type="button" x-on:click="details = !details" class="px-5 py-0.5 flex justify-center items-center gap-2 bg-green-600 text-gray-50 rounded-full {{-- Partie hover --}} hover:bg-green-500 hover:scale-105 transition duration-200"> Voir plus
+                        <button id="detailsButton" value="{{$order->id }}" type="button" x-on:click="details = !details" class="px-5 py-0.5 flex justify-center items-center gap-2 bg-logo-green text-gray-50 rounded-full {{-- Partie hover --}} hover:bg-green-600 hover:scale-105 transition duration-200"> Voir plus
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
                                 <path fill-rule="evenodd" d="M2 10a.75.75 0 0 1 .75-.75h12.59l-2.1-1.95a.75.75 0 1 1 1.02-1.1l3.5 3.25a.75.75 0 0 1 0 1.1l-3.5 3.25a.75.75 0 1 1-1.02-1.1l2.1-1.95H2.75A.75.75 0 0 1 2 10Z" clip-rule="evenodd" />
                             </svg>
