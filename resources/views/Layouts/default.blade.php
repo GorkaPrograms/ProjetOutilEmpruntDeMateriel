@@ -18,7 +18,6 @@
         {{-- Logo --}}
         <a href="{{ route('home') }}">
             <img src="{{ URL('images/website_logo/GearToGo.png') }}" alt="" class="h-12 w-auto">
-
         </a>
         {{-- Formulaire de recherche --}}
         <form action="" class="pb-3 pr-2 flex items-center border-b border-b-slate-300 text-slate-300 focus-within:border-b-slate-900 focus-within:text-slate-900 transition">
@@ -46,7 +45,7 @@
                 <button
                     @click="open = !open"
                     @click.outside="if (open) open = false"
-                    class="w-8 h-8 flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    class="w-8 h-8 flex rounded-full bg-neutral-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
@@ -81,6 +80,21 @@
             </nav>
         </div>
     </header>
+
+    @if(session('status'))
+        <div class="mt-10 rounded-md bg-green-50 p-4">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-green-800">{{ session('status') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <main class="mt-10 md:mt-12 lg:mt-16">
         {{ $slot }}

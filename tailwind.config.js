@@ -7,7 +7,11 @@ export default {
       './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
   ],
   theme: {
-    extend: {},
+    extend: {
+        colors:{
+            'logo-green': '#0BBF64',
+        },
+    },
   },
   plugins: [
       require('@tailwindcss/forms')({

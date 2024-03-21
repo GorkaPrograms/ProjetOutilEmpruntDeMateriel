@@ -72,6 +72,6 @@ class OrderController extends Controller
         // Supprimer rentables de la session
         $request->session()->forget('rentables');
 
-        return redirect()->route('home');
+        return redirect()->route('home')->withStatus('Location réalisée avec succès');
     }
 }
