@@ -7,14 +7,14 @@
     <div class="grid grid-cols-3 gap-5">
         @forelse($rentables as $rentable)
             <div class="col-1">
-                @if($rentable->image != null)
-                    <img class="min-w-full max-w-full h-[400px] rounded-2xl shadow-lg" src="{{ asset($rentable->image) }}">
-                @else
-                    <p class="h-[65px]"> </p>
-                    <img class="min-w-full max-w-full rounded-2xl shadow-md" src="{{ asset('default-img.jpg') }}">
-                    <p class="h-[65px]"> </p>
-                @endif
-                <div class="flex flex-row justify-between mt-1">
+                <div class="w-full h-[350px]">
+                    @if ($rentable->image != null )
+                        <img class="object-contain rounded-2xl w-full h-full shadow-lg" src="{{ asset($rentable->image) }}">
+                    @else
+                        <img class="object-cover rounded-2xl w-full h-full shadow-md" src="{{ asset('default-img.jpg') }}">
+                    @endif
+                </div>
+                <div class="flex flex-row justify-between mt-2">
                     <p class=""><strong>{{$rentable->name}}</strong></p>
                     @if ($rentable->quantity > 0)
                     <form action="{{ route('cart.add-product') }}" method="post">
