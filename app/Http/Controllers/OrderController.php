@@ -19,8 +19,19 @@ class OrderController extends Controller
     }
 
     public function showMyOrders(Request $request){
-        $user = Auth::user();
-        $orders = Order::query()->where('user', $user->id);
+        // Récupérer l'ID de l'utilisateur connecté
+        $userID = Auth::id();
+
+        // Récupérer toutes les commandes de l'utilisateur connecté avec leurs produits associés
+        $orders = Order::where("user", $userID)
+            ->whereIn('status', ['en location', 'rendu'])
+            ->with(['rentables', 'user'])
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
+        if (!$orders) {
+            return response()->json(['error' => 'Événement non trouvé'], 404);
+        }
 
         if ($search = $request->search) {
             $orders->where(fn (Builder $query) => $query
@@ -31,8 +42,8 @@ class OrderController extends Controller
             );
         }
 
-        return view('order.my-orders',[
-            'orders' => $orders->latest()->paginate(10)
+        return view('order.my-orders', [
+            'orders' => $orders
         ]);
     }
 
@@ -42,29 +53,6 @@ class OrderController extends Controller
         $order->status = "en location";
         $order->comeback_date = $request->input('comeback_date');
         $order->save();
-
-        //$rentable = Rentable::All();
-
-        $rentablesArray = Session::get('rentables');
-
-        // Créer un tableau pour stocker les quantités de chaque produit dans le panier
-        $quantites = array_count_values(array_column($rentablesArray, 'id'));
-
-        // Obtenir les IDs des produits uniques dans le panier
-        $rentableIds = array_unique(array_column($rentablesArray, 'id'));
-
-        // Pour chaque produit dans le panier
-        foreach ($rentableIds as $rentableId) {
-            // Rechercher une location correspondante dans la base de données
-            $existingRentable = Rentable::find($rentableId);
-
-            // Si une location correspondante est trouvée
-            if ($existingRentable) {
-                // Ajouter la quantité de produits identiques pour cet enregistrement
-                $existingRentable->quantity -= $quantites[$rentableId];
-                $existingRentable->save();
-            }
-        }
 
         // Supprimer l'ordre de la session
         Session::forget('order');

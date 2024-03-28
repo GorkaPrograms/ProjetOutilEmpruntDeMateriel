@@ -13,65 +13,33 @@
                 </button>
             </form>
         </div>
+        <div class="gap-6 flex flex-col">
+            @forelse($orders as $order)
+                    <table class="text-left p-1 border-collapse shadow-md w-fit">
+                        <thead class="text-center bg-[#494958] text-gray-50 p-1">
+                        <tr>
+                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer pl-2 rounded-tl-md"> N° de la location : {{$order->id}} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> Status : {{$order->status}}</th>
+                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> A rendre avant le {{ $order->comeback_date }} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer rounded-tr-md"> loué le {{$order->created_at}} </th>
+                        </tr>
+                        </thead>
+                        @foreach($order->rentables as $rentable)
+                        <tbody>
+                            <tr >
+                                <td> Produit : {{ $rentable->name }}</td>
+                                <td> quantité(s) : {{ $rentable->pivot->quantity }}</td>
+                            </tr>
+                        </tbody>
+                        @endforeach
+                    </table>
+            @empty
+                <p class="text-gray-400 mb-4">Aucune location trouvée</p>
+            @endforelse
 
-        <table class="text-left p-1 border-collapse shadow-md w-fit">
-            <thead class="text-center bg-[#494958] text-gray-50 p-1">
-            <tr>
-                <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer pl-2 rounded-tl-md"> N° de la location </th>
-                <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> Status </th>
-                <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> Date de retour </th>
-                <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> Date de location </th>
-                <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer rounded-tr-md"> Retourner les articles </th>
-            </tr>
-            </thead>
-            <tbody>
-                @forelse($orders as $order)
-                <tr class="odd:bg-stone-100 even:bg-stone-200">
-                    <td class="py-2 pl-2" id="id"> {{$order->id}} </td>
-                    <td id="orderStatus"> {{$order->status}} </td>
-                    <td id="comebackDate"> Le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </td>
-                    <td id="orderedOn"> Le {{ $order->created_at->format('d/m/Y') }} </td>
-                    <td>
-                        <div class="w-full flex justify-center">
-                            <button id="detailsButton" value="{{$order->id}}" type="button" x-on:click="comeback = !comeback" class="px-5 py-0.5 flex justify-center items-center gap-2 bg-green-600 text-gray-50 rounded-full {{-- Partie hover --}} hover:bg-green-500 hover:scale-105 transition duration-200">Rendre les articles
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                                    <path fill-rule="evenodd" d="M2 10a.75.75 0 0 1 .75-.75h12.59l-2.1-1.95a.75.75 0 1 1 1.02-1.1l3.5 3.25a.75.75 0 0 1 0 1.1l-3.5 3.25a.75.75 0 1 1-1.02-1.1l2.1-1.95H2.75A.75.75 0 0 1 2 10Z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                @empty
-                    <p class="text-gray-400 mb-4">Aucune location trouvée</p>
-                @endforelse
-            </tbody>
-        </table>
+        </div>
         <div class="w-full ml-96">
             {{$orders->links()}}
-        </div>
-
-        <div x-show="comeback === true">
-            <div class="fixed bg-gray-900 opacity-20 top-0 left-0 w-full h-full" x-on:click="comeback= !comeback"></div>
-
-            <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md">
-                <button x-on:click="comeback = !comeback">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fixed top-2 right-2 text-red-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-                <form id="detailsModal" action="">
-                    <h1 class="text-xl font-bold underline underline-offset-2 pl-2">Retourner l'emprunt N°<span id="lendId"></span></h1>
-                    <p class="text-md pl-4 my-1"><strong>Status de la commande :</strong> <status id="status"></status></p>
-                    <p class="text-md pl-4 my-1"><strong>Commande réalisée le :</strong> <date id="ordered_on"></date> </p>
-                    <p class="text-md pl-4 my-1"><strong>Commande a retourner le :</strong> <date id="comeback_on"></date></p>
-
-                    <h2 class="text-lg font-bold underline underline-offset-2 pl-2">Articles dans cette commande :</h2>
-                    <div class="w-full flex justify-center px-24 gap-12 my-4">
-                        <button type="submit" class="w-fit px-2 py-1 bg-green-600 rounded-lg text-gray-50 font-bold {{--Partie hover--}} hover:bg-green-500 transition duration-200">Rendre les produits</button>
-                        <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="comeback = !comeback">Retour</button>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
 
