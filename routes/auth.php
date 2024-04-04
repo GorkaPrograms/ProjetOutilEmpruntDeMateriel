@@ -38,7 +38,7 @@ Route::middleware(['auth', 'admin.auth'])->group(function(){
     //Orders
     Route::get('/admin/dashboard/orders', [DashboardController::class, 'orders'])->name('dashboard.orders');
     Route::delete('admin/dashboard/orders/delete/{order}', [DashboardController::class, 'deleteOrder'])->name('order.delete');
-    Route::patch('admin/dashboard/orders/update/{order}', [DashboardController::class, 'updateOrder'])->name('order.update');
+    Route::put('admin/dashboard/orders/update/{id}', [DashboardController::class, 'updateOrder'])->name('order.update');
 
     Route::get('/getData/{id}', [DashboardController::class, 'getData']);
 });

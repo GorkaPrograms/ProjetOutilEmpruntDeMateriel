@@ -21,7 +21,7 @@ class CartController extends Controller
         if (!$order) {
             $order = new Order();
             $order->user = Auth::user()->id;
-            $order->status = 'creation panier';
+            $order->status = 'Création panier';
             $order->save();
 
             // Stocker le nouvel ordre dans la session

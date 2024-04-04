@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/home', [RentableController::class, 'index'])->name('home');
     Route::get('/order/cart', [CartController::class, 'view'])->name('order.cart');
     Route::get('/order/order_validate', [OrderController::class, 'view'])->name('order.order_validate');
+
     Route::get('/order/my-orders', [OrderController::class, 'showMyOrders'])->name('my.orders');
 
     Route::get('/user',function (){
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function(){
 
     //route pour la validation de la location
     Route::put('/order/order_validate/validate/{id}',[OrderController::class, 'validateOrder'])->name('order.validateOrder');
+
+
 
 
 });

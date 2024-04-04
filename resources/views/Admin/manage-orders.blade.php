@@ -30,7 +30,18 @@
                 <tr class="odd:bg-stone-100 even:bg-stone-200">
                     <td id="id" class="py-2 pl-2"> {{ $order->id }} </td>
                     <td id="author"> {{ $order->first_name }} {{ $order->last_name }}</td>
-                    <td id="status"> {{ $order->status }} </td>
+                    <td id="status">
+                        <form id="statusUpdate" action="{{ route('order.update', $order->id) }}" method="POST" class="flex flex-col">
+                            @method('PUT')
+                            @csrf
+                            <select id="selectStatus" name="selectStatus">
+                                <option value="Création panier" {{ $order->status == "Création panier" ? 'selected' : '' }}>Création panier</option>
+                                <option value="En location" {{ $order->status == "En location" ? 'selected' : '' }}>En location</option>
+                                <option value="Rendu" {{ $order->status == "Rendu" ? 'selected' : '' }}>Rendu</option>
+                            </select>
+                            <button type="submit">Mettre à jour le status</button>
+                        </form>
+                    </td>
                     <td id="lending_on"> Le {{ $order->created_at->format('d/m/Y') }} </td>
                     <td id="comeback_on"> Le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </td>
                     <td>

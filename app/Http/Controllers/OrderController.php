@@ -50,7 +50,7 @@ class OrderController extends Controller
     public function validateOrder(Request $request, $id){
         $order = Order::findOrFail($id);
 
-        $order->status = "en location";
+        $order->status = "En location";
         $order->comeback_date = $request->input('comeback_date');
         $order->save();
 
@@ -62,4 +62,6 @@ class OrderController extends Controller
 
         return redirect()->route('home')->withStatus('Location réalisée avec succès');
     }
+
+
 }
