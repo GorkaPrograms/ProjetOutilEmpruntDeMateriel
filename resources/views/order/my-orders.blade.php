@@ -20,8 +20,8 @@
                         <tr>
                             <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer pl-2 rounded-tl-md"> N° de la location : {{$order->id}} </th>
                             <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> Status : {{$order->status}}</th>
-                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> A rendre avant le {{ $order->comeback_date }} </th>
-                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer rounded-tr-md"> loué le {{$order->created_at}} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> A rendre avant le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer rounded-tr-md"> loué le {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }} </th>
                         </tr>
                         </thead>
                         @foreach($order->rentables as $rentable)
