@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\RentableController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/rentable/getAllRentable', [RentableController::class, 'getAllRentable']);
+Route::post('/user/login' ,[LoginController::class, 'login']);
