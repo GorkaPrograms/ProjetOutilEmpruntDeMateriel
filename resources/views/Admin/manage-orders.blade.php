@@ -34,12 +34,12 @@
                         <form id="statusUpdate" action="{{ route('order.update', $order->id) }}" method="POST" class="flex flex-col">
                             @method('PUT')
                             @csrf
-                            <select id="selectStatus" name="selectStatus">
+                            <select id="selectStatus" name="selectStatus" class="rounded-md shadow-md py-0.5 px-5 my-1">
                                 <option value="Création panier" {{ $order->status == "Création panier" ? 'selected' : '' }}>Création panier</option>
                                 <option value="En location" {{ $order->status == "En location" ? 'selected' : '' }}>En location</option>
                                 <option value="Rendu" {{ $order->status == "Rendu" ? 'selected' : '' }}>Rendu</option>
                             </select>
-                            <button type="submit">Mettre à jour le status</button>
+                            <button type="submit" class="px-5 py-0.5 my-2 flex justify-center items-center gap-2 bg-logo-green text-gray-50 rounded-full  hover:bg-green-600 transition duration-200">Mettre à jour le status</button>
                         </form>
                     </td>
                     <td id="lending_on"> Le {{ $order->created_at->format('d/m/Y') }} </td>
@@ -89,7 +89,7 @@
                         <div></div>
                     </div>
                 </div>
-                <div class="w-full flex justify-center px-24 mb-4">
+                <div class="w-full flex-row flex justify-center px-24 mb-4">
                     <button type="button" class="w-fit px-8 py-1 bg-stone-200 rounded-lg text-gray-950 font-bold {{--Partie hover--}} hover:bg-[#494958] hover:text-gray-100 transition duration-200" x-on:click="details = !details">Retour</button>
                 </div>
             </div>
@@ -160,7 +160,6 @@
                     });
             });
         });
-
     </script>
 
 </x-admin-layout>

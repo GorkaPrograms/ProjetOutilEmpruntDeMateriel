@@ -61,9 +61,9 @@
     <main class="mt-10 md:mt-12 lg:mt-16">
         {{-- Navigation --}}
         <div class="flex flex-row justify-center gap-28">
-            <a class="hover:text-indigo-600 hover:underline transition duration-200 p-2 text-lg" href="{{ route('Dashboard.view') }}"> Gérer les utilisateurs </a>
-            <a class="hover:text-indigo-600 hover:underline transition duration-200 p-2 text-lg" href="{{ route('dashboard.rentables') }}"> Gérer les articles </a>
-            <a class="hover:text-indigo-600 hover:underline transition duration-200 p-2 text-lg" href="{{ route('dashboard.orders') }}"> Gérer les emprunts </a>
+            <a class="hover:text-logo-green hover:underline transition duration-200 p-2 text-lg" href="{{ route('Dashboard.view') }}"> Gérer les utilisateurs </a>
+            <a class="hover:text-logo-green hover:underline transition duration-200 p-2 text-lg" href="{{ route('dashboard.rentables') }}"> Gérer les articles </a>
+            <a class="hover:text-logo-green hover:underline transition duration-200 p-2 text-lg" href="{{ route('dashboard.orders') }}"> Gérer les emprunts </a>
         </div>
         {{ $slot }}
     </main>
