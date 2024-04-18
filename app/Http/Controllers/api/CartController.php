@@ -17,10 +17,14 @@ class CartController extends Controller
 {
     public function viewItemsInCart(Request $request){
         $productsArray = $request->productInCart;
+        $arrayCount = array_count_values($productsArray);
 
-        return response()->json($productsArray);
-       //foreach($productsArray as $product){
-       //    $rentable = Rentable::where('id', $product->id);
-       //}
+        $rentablesArray = Rentable::whereIn('id', $productsArray)->get();
+        $rentablesArray = $rentablesArray->map(function (Rentable $rentable) use ($arrayCount) {
+            $rentable['quantity_cart'] = $arrayCount[$rentable->id];
+            return $rentable;
+        });
+
+        return response()->json($rentablesArray);
     }
 }

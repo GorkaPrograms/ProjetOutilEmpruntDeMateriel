@@ -24,4 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/rentable/getAllRentable', [RentableController::class, 'getAllRentable']);
 Route::post('/user/login' ,[LoginController::class, 'login']);
 
-Route::get('/cart/viewItemsInCart', [CartController::class, 'viewItemsInCart']);
+Route::post('/cart/viewItemsInCart', [CartController::class, 'viewItemsInCart']);
