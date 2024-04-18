@@ -17,7 +17,7 @@
     <header class="flex justify-between items-center space-x-5 text-slate-900">
         {{-- Logo --}}
         <a href="{{ route('home') }}">
-            <img src="{{ URL('images/website_logo/GearToGo.png') }}" alt="" class="h-12 w-auto">
+            <img src="{{ URL('images/website_logo/GearToGo.png') }}" alt="logo GearToGo" class="h-12 w-auto">
         </a>
         {{-- Formulaire de recherche --}}
         <form action="" class="pb-3 pr-2 flex items-center border-b border-b-slate-300 text-slate-300 focus-within:border-b-slate-900 focus-within:text-slate-900 transition">

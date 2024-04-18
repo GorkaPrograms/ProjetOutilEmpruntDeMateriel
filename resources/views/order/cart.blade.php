@@ -1,4 +1,4 @@
-<x-layout>
+<x-clear-layout>
     <p class="text-2xl mb-2 underline underline-offset-2 font-bold">Votre panier</p>
     @if (session('outOfQuantity'))
         <div class="w-full p-4 bg-red-600 alert alert-success flex justify-center items-center rounded-lg my-4">
@@ -72,4 +72,4 @@
             @endif
         </div>
     </div>
-</x-layout>
+</x-clear-layout>
