@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\RentableController;
 use Illuminate\Http\Request;
@@ -22,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/rentable/getAllRentable', [RentableController::class, 'getAllRentable']);
 Route::post('/user/login' ,[LoginController::class, 'login']);
+
+Route::get('/cart/viewItemsInCart', [CartController::class, 'viewItemsInCart']);
