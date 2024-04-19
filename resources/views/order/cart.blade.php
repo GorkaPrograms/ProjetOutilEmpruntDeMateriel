@@ -8,16 +8,17 @@
     <div class="w-full h-full flex justify-center items-start">
         <div class="gap-2 flex flex-col w-full">
             @foreach($items as $item)
-                <div class="w-[600px] h-[200px] border-black border flex rounded-lg overflow-hidden bg-white shadow-md mb-2">
+                <div class="w-[600px] h-[200px] border-neutral-900/20 border flex rounded-lg overflow-hidden bg-white shadow-md mb-2">
 
-                    <img src="{{ asset($item->image) }}" class="w-auto h-full p-3" alt="">
+                    <img src="{{ asset($item->image) }}" class="w-auto h-full p-3" alt="ProductImage">
+
                     <div class="flex flex-col p-4 w-full">
-                        <p class="text-xl">{{$item->name}}</p>
+                        <p class="text-xl font-medium">{{$item->name}}</p>
 
                         <div class="w-full h-full flex justify-end items-center flex-col">
                             <div class="w-full flex justify-between items-center relative mb-2">
                                 <div class="flex justify-center items-center">
-                                    <p>Quantité : {{$item->quantity}}</p>
+                                    <p class="underline underline-offset-1">Quantité : {{$item->quantity}}</p>
                                 </div>
                                 <div class="flex justify-center items-center gap-4">
                                     <form action="{{ route('addQuantityToProduct') }}" method="POST" class="flex justify-center items-center">
@@ -58,9 +59,9 @@
         </div>
         <div class="w-full flex justify-end items-center">
             @if(\Illuminate\Support\Facades\Session::has('rentables') && count(\Illuminate\Support\Facades\Session::get('rentables')) > 0)
-                <div class="w-[300px] h-[100px] bg-white flex justify-center items-center rounded-lg flex-col border border-black p-4 gap-4">
+                <div class="w-[400px] h-[120px] bg-white flex justify-center items-center rounded-lg flex-col border border-y-neutral-900/20 p-4 gap-4">
                     <div class="w-full flex justify-start items-center">
-                        <h1>Nombre d'articles : {{ count(\Illuminate\Support\Facades\Session::get('rentables')) }}</h1>
+                        <h1 class="text-2xl font-medium">Nombre d'articles : {{ count(\Illuminate\Support\Facades\Session::get('rentables')) }}</h1>
                     </div>
                     <div class="w-full flex justify-end items-center">
                         <a href="{{ route('order.order_validate') }}" class="w-fit px-8 py-1 bg-logo-green rounded-lg text-gray-50 font-bold  hover:bg-green-600 transition duration-200">
