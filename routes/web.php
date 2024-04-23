@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\Rentable;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RentableController;
 use App\Http\Controllers\CartController;
@@ -30,7 +29,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function(){
     Route::get('/home', [RentableController::class, 'index'])->name('home');
     Route::get('/order/cart', [CartController::class, 'view'])->name('order.cart');
-    Route::get('/order/order_validate', [OrderController::class, 'view'])->name('order.order_validate');   
+    Route::get('/order/order_validate', [OrderController::class, 'view'])->name('order.order_validate');
     Route::get('/order/my-orders', [OrderController::class, 'showMyOrders'])->name('my.orders');
 
     Route::get('/user',function (){

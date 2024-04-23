@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\api\RentableController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,5 @@ Route::get('/rentable/getAllRentable', [RentableController::class, 'getAllRentab
 Route::post('/user/login' ,[LoginController::class, 'login']);
 
 Route::post('/cart/viewItemsInCart', [CartController::class, 'viewItemsInCart']);
+
+Route::post('/order/showOrders', [OrderController::class, 'showOrders']);

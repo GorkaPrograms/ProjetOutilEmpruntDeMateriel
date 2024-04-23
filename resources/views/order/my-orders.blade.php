@@ -36,7 +36,6 @@
             @empty
                 <p class="text-gray-400 mb-4">Aucune location trouvée</p>
             @endforelse
-
         </div>
         <div class="w-full ml-96">
             {{$orders->links()}}
