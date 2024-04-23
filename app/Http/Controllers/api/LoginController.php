@@ -26,12 +26,4 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(Request $request)
-    {
-        Auth::logout(); // Déconnexion de l'utilisateur
-        $request->session()->invalidate(); // Invalidation de la session
-
-        return redirect('/'); // Rediriger vers la page de connexion ou une autre page de votre choix
-    }
-
 }

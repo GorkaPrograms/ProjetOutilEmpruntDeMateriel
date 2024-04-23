@@ -26,5 +26,11 @@ Route::get('/rentable/getAllRentable', [RentableController::class, 'getAllRentab
 Route::post('/user/login' ,[LoginController::class, 'login']);
 
 Route::post('/cart/viewItemsInCart', [CartController::class, 'viewItemsInCart']);
+Route::post('/cart/addQuantityToProduct', [CartController::class, 'addQuantityToProduct']);
+Route::post('/cart/addProductToCart', [CartController::class, 'addProductToCart']);
+Route::post('/cart/removeQuantityToProduct', [CartController::class, 'removeQuantityToProduct']);
+Route::post('/cart/removeProductToCart', [CartController::class, 'removeProductToCart']);
+
 
 Route::post('/order/showOrders', [OrderController::class, 'showOrders']);
+Route::post('/order/validateOrder', [OrderController::class, 'validateOrder']);
