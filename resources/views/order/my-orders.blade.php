@@ -32,7 +32,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <button  class="cursor-not-allowed bg-green-300 rounded rounded-xl p-2 text-black">
+                                    <button  class="cursor-not-allowed bg-[#0BBF64] rounded rounded-xl p-2 text-white">
                                         Produit(s) rendu(s)
                                     </button>
                                 @endif

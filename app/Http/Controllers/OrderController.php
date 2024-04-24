@@ -66,6 +66,23 @@ class OrderController extends Controller
     public function returnOrder(Request $request, $id){
         $order = Order::findOrFail($id);
 
+        $productQuantities = [];
+
+        $rentables = $order->rentables;
+
+        foreach ($rentables as $rentable) {
+            $productQuantities[] = [
+                'product_id' => $rentable->id, // ID du produit
+                'quantity' => $rentable->pivot->quantity // Quantité liée à la commande (via la relation pivot)
+            ];
+        }
+
+        foreach ($productQuantities as $productQuantity) {
+            $product = Rentable::find($productQuantity['product_id']);
+            $product->quantity += $productQuantity['quantity'];
+            $product->save();
+        }
+
         $order->status = "Rendu";
         $order->save();
 
