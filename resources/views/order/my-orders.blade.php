@@ -18,15 +18,33 @@
                     <table class="text-left p-1 border-collapse shadow-md w-fit">
                         <thead class="text-center bg-[#494958] text-gray-50 p-1">
                         <tr>
-                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer pl-2 rounded-tl-md"> N° de la location : {{$order->id}} </th>
-                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> Status : {{$order->status}}</th>
-                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer"> A rendre avant le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </th>
-                            <th class="w-52 text-center py-2 text-lg pr-4 cursor-pointer rounded-tr-md"> loué le {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4 pl-2 rounded-tl-md"> N° de la location : {{$order->id}} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4"> Status : {{$order->status}}</th>
+                            <th class="w-52 text-center py-2 text-lg pr-4"> A rendre avant le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4"> loué le {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }} </th>
+                            <th class="w-52 text-center py-2 text-lg pr-4 rounded-tr-md">
+                                @if ($order->status == "En location")
+                                    <form action="{{ route('order.returnOrder', $order->id)}}" method="POST" class="flex justify-center items-center">
+                                        @csrf
+                                        @method('PUT')
+                                        <button  class="bg-white rounded rounded-xl p-2 text-black">
+                                            Rendre le(s) produit(s)
+                                        </button>
+                                    </form>
+                                @else
+                                    <button  class="cursor-not-allowed bg-green-300 rounded rounded-xl p-2 text-black">
+                                        Produit(s) rendu(s)
+                                    </button>
+                                @endif
+                            </th>
                         </tr>
                         </thead>
                         @foreach($order->rentables as $rentable)
                         <tbody>
-                            <tr >
+                            <tr>
+                                <td class="w-32 h-32">
+                                    <img src="{{ asset($rentable->image) }}" alt="object-contain">
+                                </td>
                                 <td> Produit : {{ $rentable->name }}</td>
                                 <td> quantité(s) : {{ $rentable->pivot->quantity }}</td>
                             </tr>

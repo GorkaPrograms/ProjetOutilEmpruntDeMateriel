@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function(){
 
     //route pour la validation de la location
     Route::put('/order/order_validate/validate/{id}',[OrderController::class, 'validateOrder'])->name('order.validateOrder');
+    Route::put('/order/order_return/{id}',[OrderController::class, 'returnOrder'])->name('order.returnOrder');
 
 
 

@@ -63,5 +63,17 @@ class OrderController extends Controller
         return redirect()->route('home')->withStatus('Location réalisée avec succès');
     }
 
+    public function returnOrder(Request $request, $id){
+        $order = Order::findOrFail($id);
+
+        $order->status = "Rendu";
+        $order->save();
+
+        $orderNumber = $order->id;
+
+        return redirect()->route('my.orders')->withStatus("Location numéro $orderNumber rendu avec succès");
+
+    }
+
 
 }

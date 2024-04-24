@@ -229,10 +229,10 @@ class DashboardController extends Controller
         return response()->json($order);
     }
 
-    public function updateOrder(Request $request, $id){
+    public function updateOrder($id){
         $order = Order::findOrFail($id);
 
-        $order->status = $request->input('selectStatus');
+        $order->status = "Rendu";
         $order->save();
 
         return back()->withStatus('Modification du status réalisée avec succès');
