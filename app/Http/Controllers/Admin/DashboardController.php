@@ -201,7 +201,8 @@ class DashboardController extends Controller
     public function orders(Request $request):View{
         $query = Order::select('orders.id','orders.status','orders.comeback_date','orders.updated_at','orders.created_at','user.first_name','user.last_name')
             ->join('user','user.id', '=' ,'orders.user')
-            ->with("rentables");
+            ->with("rentables")
+            ->orderBy('id', 'desc');
 
         if ($search = $request->search) {
             $query->where(function ($query) use ($search) {

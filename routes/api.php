@@ -34,3 +34,5 @@ Route::post('/cart/removeProductToCart', [CartController::class, 'removeProductT
 
 Route::post('/order/showOrders', [OrderController::class, 'showOrders']);
 Route::post('/order/validateOrder', [OrderController::class, 'validateOrder']);
+Route::post('/order/returnOrder', [OrderController::class, 'returnOrder']);
+

@@ -18,21 +18,21 @@
                     <table class="text-left p-1 border-collapse shadow-md w-fit">
                         <thead class="text-center bg-[#494958] text-gray-50 p-1">
                         <tr>
-                            <th class="w-52 text-center py-2 text-lg pr-4 pl-2 rounded-tl-md"> N° de la location : {{$order->id}} </th>
-                            <th class="w-52 text-center py-2 text-lg pr-4"> Status : {{$order->status}}</th>
-                            <th class="w-52 text-center py-2 text-lg pr-4"> A rendre avant le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </th>
-                            <th class="w-52 text-center py-2 text-lg pr-4"> loué le {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }} </th>
-                            <th class="w-52 text-center py-2 text-lg pr-4 rounded-tr-md">
+                            <th class="w-52 text-center py-2 text-xl pr-4 pl-2 rounded-tl-md"> N° de la location : {{$order->id}} </th>
+                            <th class="w-52 text-center py-2 text-xl pr-4"> Status : {{$order->status}}</th>
+                            <th class="w-52 text-center py-2 text-xl pr-4"> A rendre avant le {{ \Carbon\Carbon::parse($order->comeback_date)->format('d/m/Y') }} </th>
+                            <th class="w-52 text-center py-2 text-xl pr-4"> loué le {{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }} </th>
+                            <th class="w-52 text-center py-2 text-xl pr-4 rounded-tr-md">
                                 @if ($order->status == "En location")
                                     <form action="{{ route('order.returnOrder', $order->id)}}" method="POST" class="flex justify-center items-center">
                                         @csrf
                                         @method('PUT')
-                                        <button  class="bg-white rounded rounded-xl p-2 text-black">
+                                        <button  class=" bg-[#0BBF64] text-xl rounded rounded-xl p-2 text-white">
                                             Rendre le(s) produit(s)
                                         </button>
                                     </form>
                                 @else
-                                    <button  class="cursor-not-allowed bg-[#0BBF64] rounded rounded-xl p-2 text-white">
+                                    <button  class="cursor-not-allowed text-xl bg-white rounded rounded-xl p-2 text-black">
                                         Produit(s) rendu(s)
                                     </button>
                                 @endif
@@ -40,13 +40,21 @@
                         </tr>
                         </thead>
                         @foreach($order->rentables as $rentable)
-                        <tbody>
+                        <tbody class="border border-b">
                             <tr>
-                                <td class="w-32 h-32">
-                                    <img src="{{ asset($rentable->image) }}" alt="object-contain">
+                                <td class="p-4">
+                                    <div class="aspect-square w-[300px] bg-white overflow-hidden p-2 rounded-xl flex justify-center items-center">
+                                        <img src="{{ asset($rentable->image) }}" class="aspect-contain w-full h-full" alt="{{$rentable->name}}">
+                                    </div>
                                 </td>
-                                <td> Produit : {{ $rentable->name }}</td>
-                                <td> quantité(s) : {{ $rentable->pivot->quantity }}</td>
+                                <td>
+                                    <div class="gap-4">
+                                        <p class="text-xl font-bold">{{ $rentable->name }}</p>
+                                        <p class="text-lg underline ">{{$rentable->type}}</p>
+                                        <p class="text-lg">Quantité louée : {{ $rentable->pivot->quantity }}</p>
+                                    </div>
+                                </td>
+
                             </tr>
                         </tbody>
                         @endforeach

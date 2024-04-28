@@ -67,22 +67,12 @@
         <div x-show="details === true">
             <div class="fixed bg-gray-900 opacity-20 top-0 left-0 w-full h-full" x-on:click="details= !details"></div>
 
-            <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto h-auto rounded-md p-4">
+            <div class="bg-white fixed top-1/2 left-1/2 z-20 transform -translate-x-1/2 -translate-y-1/2 min-w-[33.333333%] w-auto min-h-fit max-h-[500px] overflow-auto rounded-md p-4">
                 <button x-on:click="details = !details">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fixed top-2 right-2 text-red-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div id="orderInformation">
-                    <h1 class="text-xl font-bold underline underline-offset-2">Détails de l'emprunt N°<span id="lendId"></span></h1>
-                    <div>
-                        <p id="idOrder"></p>
-                        <p id="nameOfTheOwner"></p>
-                        <p id="dateOfRentable"></p>
-                        <p id="statusOrder"></p>
-                        <p id="returnDate"></p>
-                    </div>
-                </div>
                 <div id="productInsideOrder">
                     <h1 class="text-xl font-bold underline underline-offset-2">Produit(s) emprunté(s)</h1>
                     <div id="rentables-list">
@@ -108,25 +98,6 @@
                 fetch(`/getData/${orderId}`)
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data)
-                        const fieldsMapping = {
-                            'idOrder': 'id',
-                            'nameOfTheOwner': 'user',
-                            'dateOfRentable': 'created_at',
-                            'statusOrder': 'status',
-                            'returnDate': 'comeback_date'
-                        };
-
-                        for (const fieldId in fieldsMapping) {
-                            const paraElement = document.getElementById(fieldId);
-                            const dataKey = fieldsMapping[fieldId];
-                            const dataValue = data[dataKey];
-
-                            if (paraElement && dataValue) {
-                                // Mettre à jour le texte des balises <p>
-                                paraElement.textContent = dataValue;
-                            }
-                        }
 
                         // mettre a jour les produits
                         const rentablesListElement = document.getElementById("rentables-list");
@@ -140,18 +111,24 @@
                         for (const rentable of data.rentables) {
                             const rentableElement = document.createElement('div');
 
+
                             const nameElement = document.createElement('p');
                             nameElement.textContent = rentable.name;
 
                             const quantityElement = document.createElement('p');
                             quantityElement.textContent = `Quantité(s): ${rentable.pivot.quantity}`
+
+                            const imageElement = document.createElement('img');
+                            imageElement.src = 'http://127.0.0.1:8000/' + rentable.image;
+
                             // Ajouter du style à l'élément
                             //quantityElement.style.backgroundColor = "red";
                             // Ajouter une classe dans l'élément
-                            //quantityElement.classList.add("rentable");
+                            imageElement.classList.add("w-12");
 
                             rentableElement.appendChild(nameElement);
                             rentableElement.appendChild(quantityElement);
+                            rentableElement.appendChild(imageElement);
                             rentablesListElement.appendChild(rentableElement);
                         }
                     })

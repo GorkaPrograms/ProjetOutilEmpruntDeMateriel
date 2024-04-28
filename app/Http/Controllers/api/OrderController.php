@@ -20,10 +20,10 @@ class OrderController extends Controller
 
         // Récupérer toutes les commandes de l'utilisateur connecté avec leurs produits associés
         $orders = Order::where("user", $userID)
-            ->whereIn('status', ['en location', 'rendu'])
+            ->whereIn('status', ['En location', 'Rendu'])
             ->with(['rentables', 'user'])
             ->orderBy('id', 'desc')
-            ->paginate(5);
+            ->paginate();
 
         if ($orders->count() > 0) {
             // Renvoyer les commandes sous la clé 'data'
@@ -34,15 +34,13 @@ class OrderController extends Controller
             // Renvoyer une erreur s'il n'y a pas de commandes
             return response()->json([
                 'error' => 'Aucune commande trouvée',
-            ], 401);
+            ], 404);
         }
     }
 
 
     public function validateOrder(Request $request){
         $userID = $request->id_user;
-
-        echo($userID);
 
         $order = new Order();
         $order->user = $userID;
@@ -84,5 +82,33 @@ class OrderController extends Controller
         }
 
         return response()->json(['success' => 'Location effectuée']);
+    }
+
+    public function returnOrder(Request $request){
+        $id = $request->input('orderId');
+
+        $order = Order::findOrFail($id);
+
+        $productQuantities = [];
+
+        $rentables = $order->rentables;
+
+        foreach ($rentables as $rentable) {
+            $productQuantities[] = [
+                'product_id' => $rentable->id, // ID du produit
+                'quantity' => $rentable->pivot->quantity // Quantité liée à la commande (via la relation pivot)
+            ];
+        }
+
+        foreach ($productQuantities as $productQuantity) {
+            $product = Rentable::find($productQuantity['product_id']);
+            $product->quantity += $productQuantity['quantity'];
+            $product->save();
+        }
+
+        $order->status = "Rendu";
+        $order->save();
+
+        return response()->json(['success' => 'Location numéro rendu avec succès']);
     }
 }
