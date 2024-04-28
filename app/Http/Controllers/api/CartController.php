@@ -85,8 +85,6 @@ class CartController extends Controller
         }else{
             return false;
         }
-
-        //return $rentable->quantity > $quantity;
     }
 
     public function removeQuantityToProduct(Request $request)
